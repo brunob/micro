@@ -1,0 +1,25 @@
+<paquet
+	prefix="pz"
+	categorie="squelette"
+	version="1.0.0"
+	etat="dev"
+	compatibilite="[3.2.0;3.2.*]"
+	logo="images/pz-128.png"
+>
+	<nom>PlasticZero</nom>
+	<!-- Zero Plastic working group in the World Network of Island and Coastal Biosphere Reserves -->
+
+	<auteur>b_b</auteur>
+	<copyright>2020</copyright>
+	<licence>GPL v3</licence>
+
+	<necessite nom="modesto" compatibilite="[2.1.0;[" />
+	<necessite nom="cextras" compatibilite="[3.2.6;[" />
+	<necessite nom="iextras" compatibilite="[3.5.8;[" />
+	<necessite nom="compositions" compatibilite="[3.7.4;[" />
+	<necessite nom="centre_image" compatibilite="[0.10.4;[" />
+	<necessite nom="zotspip" compatibilite="[3.6.1;[" />
+	<necessite nom="gis" compatibilite="[4.49.1;[" />
+
+	<!-- <pipeline nom="declarer_champs_extras" inclure="base/pz.php" /> -->
+</paquet>

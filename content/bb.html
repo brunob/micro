@@ -1,0 +1,27 @@
+<INCLURE{fond=modeles/carte_gis,objets=zitems,
+	autocenterandzoom=oui,
+	cluster=oui,
+	clusterSpiderfyOnMaxZoom=oui,
+	fullscreen=oui}>
+#SET{error,0}
+<B_items>
+<table class="spip">
+	<BOUCLE_items(ZITEMS){id_zcollection=RBR9DL97}{id_parent=0}>
+		<tr>
+			<td><a href="https://www.zotero.org/zeroplastic/items/#ID_ZITEM" target="_blank">#ID_ZITEM</a></td>
+			<td>#TITRE</td>
+			<td>[(#ID_ZITEM|pz_locate_zitem|table_valeur{source}|sinon{/!\ no location[(#SET{error,#GET{error}|plus{1}})]})]</td>
+		</tr>
+	</BOUCLE_items>
+	<tfoot>
+		<tr>
+			<td colspan="3">[Non localisées (#GET{error}) / ][Total (#TOTAL_BOUCLE)]</td>
+		</tr>
+	</tfoot>
+</table>
+</B_items>
+<style type="text/css">
+.content { float: none; width: auto; }
+.aside,
+.extra { display: none; }
+</style>
