@@ -13,7 +13,13 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  *     float lon : longitude
  *     string country : pays
  *     string city : ville
- *     string source : source de données du résultat
+ *     int source : source de données du résultat
+ *       1 : wikidata main town
+ *       2 : wikidata head quarter
+ *       3 : nominatim institute
+ *       4 : nominatim city
+ *     array doi données renvoyées par l'API DOI
+ *     array scopus données renvoyées par l'API scopus 
  **/
 function pz_locate_zitem($id_zitem) {
 	$zitem = sql_fetsel('*', 'spip_zitems', 'id_zitem='.sql_quote($id_zitem));
@@ -27,9 +33,11 @@ function pz_locate_zitem($id_zitem) {
 	// peut-être utiliser copie_locale() ?
 	$doi_res = recuperer_url_cache($doi_url);
 	if ($doi_res) {
-		$doi_data = json_decode($doi_res['page'], true);
-		if (isset($doi_data['message']['author'][0]['affiliation']) and strlen($doi_data['message']['author'][0]['affiliation']) > 0) {
-			$candidates['name'] = $doi_data['message']['author'][0]['affiliation'];
+		$location['doi'] = $doi_data = json_decode($doi_res['page'], true);
+		if (isset($doi_data['message']['author'][0]['affiliation'][0]['name']) and strlen($doi_data['message']['author'][0]['affiliation'][0]['name']) > 0) {
+			// données par très révélante d'après mes test, l'adresse est souvent bien trop complète pour permettre un geocoding correct
+			// mais ça peut servir de fallback si scopus n'a rien en stock
+			$candidates['name'] = $doi_data['message']['author'][0]['affiliation'][0]['name'];
 		}
 	}
 
@@ -37,7 +45,7 @@ function pz_locate_zitem($id_zitem) {
 	$scopus_url = $scopus_endpoint . '?apiKey=' . _PZ_SCOPUS_KEY . '&httpAccept=application/json&query=DOI(' . $zitem['doi'] . ')';
 	$scopus_res = recuperer_url_cache($scopus_url);
 	if ($scopus_res) {
-		$scopus_data = json_decode($scopus_res['page'], true);
+		$location['scopus'] = $scopus_data = json_decode($scopus_res['page'], true);
 		if (isset($scopus_data['search-results']['entry'][0]['affiliation'][0]['affilname']) and strlen($scopus_data['search-results']['entry'][0]['affiliation'][0]['affilname']) > 0) {
 			$candidates['name'] = $scopus_data['search-results']['entry'][0]['affiliation'][0]['affilname'];
 			$candidates['city'] = $scopus_data['search-results']['entry'][0]['affiliation'][0]['affiliation-city'];
@@ -89,12 +97,12 @@ function pz_locate_zitem($id_zitem) {
 			$location['city'] = $wikidata_data['results']['bindings'][0]['mainTownLabel']['value'];
 			$location['lat'] = $wikidata_data['results']['bindings'][0]['mainLat']['value'];
 			$location['lon'] = $wikidata_data['results']['bindings'][0]['mainLon']['value'];
-			$location['source'] = 'wikidata main town';
+			$location['source'] = 1;
 		} elseif (isset($wikidata_data['results']['bindings'][0]['hqTownLabel']['value'])) {
 			$location['city'] = $wikidata_data['results']['bindings'][0]['hqTownLabel']['value'];
 			$location['lat'] = $wikidata_data['results']['bindings'][0]['hqLat']['value'];
 			$location['lon'] = $wikidata_data['results']['bindings'][0]['hqLon']['value'];
-			$location['source'] = 'wikidata head quarter';
+			$location['source'] = 2;
 		}
 	}
 
@@ -116,11 +124,11 @@ function pz_locate_zitem($id_zitem) {
 				$location['city'] = $candidates['city'];
 				$location['lat'] = $nominatim_data[0]['lat'];
 				$location['lon'] = $nominatim_data[0]['lon'];
-				$location['source'] = 'nominatim institute';
+				$location['source'] = 3;
 			}
 		}
 		if (!isset($location['lat']) and isset($candidates['city']) and isset($candidates['country'])) {
-			// plan B, si l'adresse n'est pas trouvé, chercher simplement sur la ville ?
+			// plan B, si l'adresse n'est pas trouvé, chercher simplement sur la ville
 			$nominatim_query = $candidates['city'] . ', ' . $candidates['country'];
 			$nominatim_url = $nominatim_endpoint . urlencode($nominatim_query);
 			$nominatim_res = recuperer_url_cache($nominatim_url);
@@ -129,7 +137,7 @@ function pz_locate_zitem($id_zitem) {
 				if ($nominatim_data[0]['lat']) {
 					$location['lat'] = $nominatim_data[0]['lat'];
 					$location['lon'] = $nominatim_data[0]['lon'];
-					$location['source'] = 'nominatim city';
+					$location['source'] = 4;
 				}
 			}
 		}
