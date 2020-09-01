@@ -1,4 +1,4 @@
-<INCLURE{fond=modeles/carte_gis,objets=zitems_debug,
+<INCLURE{fond=modeles/carte_gis,objets=zitems,
 	autocenterandzoom=oui,
 	cluster=oui,
 	clusterSpiderfyOnMaxZoom=oui,
@@ -10,7 +10,7 @@
 		<tr>
 			<td><a href="https://www.zotero.org/zeroplastic/items/#ID_ZITEM" target="_blank">#ID_ZITEM</a></td>
 			<td>#TITRE</td>
-			<td>[(#ID_ZITEM|pz_locate_zitem|table_valeur{source}|sinon{0 [(#SET{error,#GET{error}|plus{1}})]})]</td>
+			<td>#LOCATION_SOURCE[(#LOCATION_SOURCE|=={0}|oui)[(#SET{error,#GET{error}|plus{1}})]]</td>
 		</tr>
 	</BOUCLE_items>
 	<tfoot>
