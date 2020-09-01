@@ -32,7 +32,7 @@ function pz_locate_zitem($id_zitem) {
 	$doi_url = $doi_endpoint . $zitem['doi'] . '?mailto=' . $email;
 	// peut-être utiliser copie_locale() ?
 	$doi_res = recuperer_url_cache($doi_url);
-	if ($doi_res) {
+	if ($doi_res['status'] == 200 and $doi_res['length']) {
 		$location['doi'] = $doi_data = json_decode($doi_res['page'], true);
 		if (isset($doi_data['message']['author'][0]['affiliation'][0]['name']) and strlen($doi_data['message']['author'][0]['affiliation'][0]['name']) > 0) {
 			// données par très révélante d'après mes test, l'adresse est souvent bien trop complète pour permettre un geocoding correct
@@ -44,7 +44,7 @@ function pz_locate_zitem($id_zitem) {
 	$scopus_endpoint = 'https://api.elsevier.com/content/search/scopus';
 	$scopus_url = $scopus_endpoint . '?apiKey=' . _PZ_SCOPUS_KEY . '&httpAccept=application/json&query=DOI(' . $zitem['doi'] . ')';
 	$scopus_res = recuperer_url_cache($scopus_url);
-	if ($scopus_res) {
+	if ($scopus_res['status'] == 200 and $scopus_res['length']) {
 		$location['scopus'] = $scopus_data = json_decode($scopus_res['page'], true);
 		if (isset($scopus_data['search-results']['entry'][0]['affiliation'][0]['affilname']) and strlen($scopus_data['search-results']['entry'][0]['affiliation'][0]['affilname']) > 0) {
 			$candidates['name'] = $scopus_data['search-results']['entry'][0]['affiliation'][0]['affilname'];
@@ -88,7 +88,7 @@ function pz_locate_zitem($id_zitem) {
 	}';
 	$wikidata_url = parametre_url($wikidata_endpoint, 'query', $wikidata_query, '&');
 	$wikidata_res = recuperer_url_cache($wikidata_url);
-	if ($wikidata_res) {
+	if ($wikidata_res['status'] == 200 and $wikidata_res['length']) {
 		$wikidata_data = json_decode($wikidata_res['page'], true);
 		if (isset($wikidata_data['results']['bindings'][0]['countryLabel']['value'])) {
 			$location['country'] = $wikidata_data['results']['bindings'][0]['countryLabel']['value'];
@@ -117,7 +117,7 @@ function pz_locate_zitem($id_zitem) {
 		}
 		$nominatim_url = $nominatim_endpoint . urlencode($nominatim_query);
 		$nominatim_res = recuperer_url_cache($nominatim_url);
-		if ($nominatim_res) {
+		if ($nominatim_res['status'] == 200 and $nominatim_res['length']) {
 			$nominatim_data = json_decode($nominatim_res['page'], true);
 			if ($nominatim_data[0]['lat']) {
 				$location['country'] = $candidates['country'];
@@ -132,7 +132,7 @@ function pz_locate_zitem($id_zitem) {
 			$nominatim_query = $candidates['city'] . ', ' . $candidates['country'];
 			$nominatim_url = $nominatim_endpoint . urlencode($nominatim_query);
 			$nominatim_res = recuperer_url_cache($nominatim_url);
-			if ($nominatim_res) {
+			if ($nominatim_res['status'] == 200 and $nominatim_res['length']) {
 				$nominatim_data = json_decode($nominatim_res['page'], true);
 				if ($nominatim_data[0]['lat']) {
 					$location['lat'] = $nominatim_data[0]['lat'];
