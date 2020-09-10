@@ -1,10 +1,9 @@
 /* Titraille / Intertitres */
 h1,h2,h3,h4,h5,h6,
 .h1,.h2,.h3,.h4,.h5,.h6 {  }
-h1, .h1, h2, .h2 { font-family: alegre; }
-h1, .h1 { font-size : 3em; }
+h2, .h2 { font-family: alegre; }
 h2, .h2 { font-size : 2.25em; margin-bottom: 1.5em; }
-h1,.h1 { color: #000; }
+h1,.h1 { font-weight: bold; color: #000; }
 h2, h2 a, h2 a:focus, h2 a:hover, h2 a:active,
 .h2, .h2 a, .h2 a:focus, .h2 a:hover, .h2 a:active,
 h3, h3 a,
@@ -28,10 +27,10 @@ body { background: #fff; font-size: 120%; }
 #container.fullwidth { max-width: none; width: 100%; }
 
 .header { margin: 0; padding : 1.5em 0; position: relative; background: #c9002f; box-shadow: 0 6px 6px -6px rgba(0,0,0,0.2); border-bottom: 1px solid #dedcd2; }
-.header .accueil {  }
+.header .accueil { text-shadow: 0 1px 3px rgba(0,0,0,0.55); }
 .header .accueil .spip_logo { float: right; margin: 0 0 0 1.5em; }
 .header .accueil #nom_site_spip,
-.header .accueil #nom_site_spip a { font-weight: bold; margin-bottom: 0; color: #fff; line-height: 1; }
+.header .accueil #nom_site_spip a { font-family: alegre; font-weight: bold; font-size: 3em; margin-bottom: 0; color: #fff; line-height: 1; }
 .header .accueil #nom_site_spip a:hover { text-decoration: none; }
 .header .accueil #slogan_site_spip { display: block; line-height: 1; opacity: 1; font-size: 60%; }
 .header .formulaire_menu_lang { position: absolute; right: 0; top: 0.90em; display: block; width: 30%; } /*Cf.: spip_formulaires.css*/
@@ -45,7 +44,7 @@ body { background: #fff; font-size: 120%; }
 #nav { position: absolute; }
 #nav-toggle ~ .menu { top: -100%; transition: all 0.3s ease-in-out; }
 #nav-toggle:checked ~ .menu { top: 0; }
-#nav-toggle ~ label { position: fixed; top: 1.5em; right: 1.5em; z-index: 2000; display: inline-block; line-height: 1; font-weight: bold; color: #fff; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+#nav-toggle ~ label { position: fixed; top: 1em; right: 0; z-index: 2000; display: inline-block; padding: 0.5em 1.5em 1em 0.5em; line-height: 1; font-weight: bold; color: #fff; background: #c9002f; text-shadow: 0 1px 3px rgba(0,0,0,0.55); cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 .toggle-picto { font-size: 2em; }
 .toggle-text { font-size: 1.25em; }
 #nav .menu { position: fixed; left: 0; right: 0; height: 100%; overflow-y: auto; background: #c9002f; }
@@ -66,7 +65,7 @@ body { background: #fff; font-size: 120%; }
 .cartouche .publication,
 .cartouche .postmeta,
 .entry .publication,
-.entry .postmeta { opacity: 0.8; }
+.entry .postmeta { color: rgba(0,0,0,0.55); }
 .postmeta > :first-child > .sep:first-child { display: none; }
 .postmeta .tags ul,
 .postmeta .tags ul li { margin: 0; }
@@ -106,6 +105,7 @@ a.spip_out, a.spip_glossaire {  }
 
 .page_sommaire h2 { text-align: center; }
 .page_sommaire h2::after { content: ""; display: block; margin: 1em auto 0; width: 40%; border-bottom: 1px solid rgba(0,0,0,.15); }
+.page_sommaire .poster { margin-bottom: 1.5em; }
 .page_sommaire .programme table.spip tbody tr:hover td { background: transparent; }
 .page_sommaire .programme table.spip td { vertical-align: middle; border: 1px solid; }
 .page_sommaire .footer { margin-top: 0; }

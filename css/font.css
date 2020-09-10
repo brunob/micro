@@ -19,4 +19,4 @@
     src: url('polices/lora-v16-latin-700.woff2') format('woff2'),
          url('polices/lora-v16-latin-700.woff') format('woff');
 }
-body { font-family: lora, Georgia,'Century Schoolbook','Times New Roman',serif; color: #444; }
+body { font-family: lora, Georgia,'Century Schoolbook','Times New Roman',serif; color: #111; }
