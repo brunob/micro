@@ -1,0 +1,86 @@
+<section>
+	<header class="cartouche offscreen">
+		<h1>#NOM_SITE_SPIP</h1>
+	</header>
+
+	<div class="main container">
+		[<div id="descriptif_site_spip">(#DESCRIPTIF_SITE_SPIP)</div>]
+
+		<BOUCLE_affiche(RUBRIQUES){id_parent=#CONFIG{pz/rub_conf,1}}{!par date}{0,1}>
+			[(#LOGO_RUBRIQUE|image_reduire{1170,0})]
+		</BOUCLE_affiche>
+		<h2>Programme</h2>
+		<div class="programme text-center">
+			<BOUCLE_prog(ARTICLES){page=programme}>
+				#TEXTE
+			</BOUCLE_prog>
+			<p>OU</p>
+			<p>Le programme tiré de l'agenda en mode événements du jour quand la conf est en cours</p>
+		</div>
+
+		<h2>Live</h2>
+		<div class="grid-2 has-gutter-xl">
+			[<div>
+				(#VAL{http://ww2.cnam.fr/cep/aupen/Guide_Moodle/res/BBB_interface.png}|copie_locale|image_recadre{1.86:1,-,focus}|image_reduire{553})
+				<h3 class="text-center">Panel 5.1</h3>
+			</div>]
+			[<div>
+				(#VAL{http://ww2.cnam.fr/cep/aupen/Guide_Moodle/res/BBB_interface.png}|copie_locale|image_recadre{1.86:1,-,focus}|image_reduire{553})
+				<h3 class="text-center">Panel 8.1</h3>
+			</div>]
+		</div>
+
+		<h2>Archives</h2>
+		<div class="text-center">
+			<p>Les éditions précédentes, leur programme, les publications liées, les archives vidéos, etc.</p>
+		</div>
+
+		<h2>News</h2>
+		<div class="liste long articles logos">
+			<ul class="liste-items grid-3-small-2 has-gutter-xl">
+			<BOUCLE_data(DATA){enum 13,18}>
+				<li class="item">
+					<h3 class="h3">
+						<a href="#">
+							[(#VAL{http://zeroplastic.islandbiosphere.org/imas/headers/}|concat{#VALEUR}|concat{.jpg}|copie_locale|image_recadre{1.86:1,-,focus}|image_reduire{503}|inserer_attribut{class,spip_logo})]
+							News #VALEUR
+						</a>
+					</h3>
+					<p>You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out.</p>
+				</li>
+			</BOUCLE_data>
+			</ul>
+		</div>
+	</div>
+
+	<INCLURE{fond=modeles/carte_gis,objets=zitems,
+		autocenterandzoom=oui,
+		zoom=2,
+		height=500px,
+		zoom_wheel=non,
+		cluster=oui,
+		clusterSpiderfyOnMaxZoom=oui,
+		singleMarkerMode=oui,
+		fullscreen=oui}>
+		<script type="text/javascript">
+			/*<![CDATA[*/
+				$('#map1').on('load', function(){
+					this.map.options.clusterOptions.iconCreateFunction = function(cluster) {
+						var childCount = cluster.getChildCount();
+						var c = ' marker-cluster-';
+						if (childCount == 1) {
+							c += 'dot';
+						} else if (childCount < 10) {
+							c += 'small';
+						} else if (childCount < 50) {
+							c += 'medium';
+						} else {
+							c += 'large';
+						}
+						return new L.DivIcon({ html: '<div><span>' + ((childCount == 1) ? '' : childCount) + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+					}
+				});
+			/*]]>*/
+		</script>
+
+</section>

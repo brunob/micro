@@ -1,0 +1,111 @@
+/* Titraille / Intertitres */
+h1,h2,h3,h4,h5,h6,
+.h1,.h2,.h3,.h4,.h5,.h6 {  }
+h1, .h1, h2, .h2 { font-family: alegre; }
+h1, .h1 { font-size : 3em; }
+h2, .h2 { font-size : 2.25em; margin-bottom: 1.5em; }
+h1,.h1 { color: #000; }
+h2, h2 a, h2 a:focus, h2 a:hover, h2 a:active,
+.h2, .h2 a, .h2 a:focus, .h2 a:hover, .h2 a:active,
+h3, h3 a,
+.h3, .h3 a { color: #222; }
+h3, .h3 { font-weight: bold; }
+
+/* Citations, code et poesie */
+.spip_code { color: #777; }
+.spip_cadre { color: #777; background-color: #fff; border: 1px solid #ddd; }
+
+/* Tableaux */
+table.spip tr.row_even td,table.spip tr.row_even th { background: transparent; }
+
+/* ------------------------------------------
+/* Habillage des elements du contenu
+/* ------------------------------------------ */
+body { background: #fff; font-size: 120%; }
+.page { display: flex; min-height: 100vh; flex-direction: column; }
+.page .container { flex: 1; }
+#container { max-width: 680px; font-size: 1.125em; }
+#container.fullwidth { max-width: none; width: 100%; }
+
+.header { margin: 0; padding : 1.5em 0; position: relative; background: #c9002f; box-shadow: 0 6px 6px -6px rgba(0,0,0,0.2); border-bottom: 1px solid #dedcd2; }
+.header .accueil {  }
+.header .accueil .spip_logo { float: right; margin: 0 0 0 1.5em; }
+.header .accueil #nom_site_spip,
+.header .accueil #nom_site_spip a { font-weight: bold; margin-bottom: 0; color: #fff; line-height: 1; }
+.header .accueil #nom_site_spip a:hover { text-decoration: none; }
+.header .accueil #slogan_site_spip { display: block; line-height: 1; opacity: 1; font-size: 60%; }
+.header .formulaire_menu_lang { position: absolute; right: 0; top: 0.90em; display: block; width: 30%; } /*Cf.: spip_formulaires.css*/
+.header .formulaire_menu_lang select { width: 100%; }
+
+.nav .liste-items { margin: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.nav .item { padding: 1em 0; }
+.nav .item a { color: #000; text-transform: uppercase; white-space: nowrap; font-family: alegre; font-size: 2em; transition: all 0.3s ease-out; }
+.nav .item.on { font-weight: normal; }
+.nav .item a:hover { color: #fff; text-decoration: none; }
+#nav { position: absolute; }
+#nav-toggle ~ .menu { top: -100%; transition: all 0.3s ease-in-out; }
+#nav-toggle:checked ~ .menu { top: 0; }
+#nav-toggle ~ label { position: fixed; top: 1.5em; right: 1.5em; z-index: 2000; display: inline-block; line-height: 1; font-weight: bold; color: #fff; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.toggle-picto { font-size: 2em; }
+.toggle-text { font-size: 1.25em; }
+#nav .menu { position: fixed; left: 0; right: 0; height: 100%; overflow-y: auto; background: #c9002f; }
+
+.footer { background: #333; }
+.footer,
+.footer a { color: #ddd; }
+.footer a:hover { color: #fff; }
+
+.breadcrumb { clear: both; margin-bottom: 1.5em; font-size: 0.846em; }
+.breadcrumb, .breadcrumb a { color: #666; }
+.page_sommaire .breadcrumb { display: none; }
+
+.cartouche { margin-bottom: 1.5em; }
+.cartouche h1 { margin-bottom: 0; }
+.cartouche .spip_logo { float: right; margin-left: 16px; margin-bottom: 4px; }
+.cartouche .publication { margin: 0; padding: 0; clear: left; }
+.cartouche .publication,
+.cartouche .postmeta,
+.entry .publication,
+.entry .postmeta { opacity: 0.8; }
+.postmeta > :first-child > .sep:first-child { display: none; }
+.postmeta .tags ul,
+.postmeta .tags ul li { margin: 0; }
+div.socialtags { clear: none; margin-top: 0.75em; }
+div.socialtags img { height: 24px; }
+
+.chapo { margin-bottom: 1.5em; font-weight: bold; color: #666; }
+.chapo .spip_cadre {color: #888; }
+.ps, .notes { margin-bottom: 1.5em; }
+.notes { clear: both; font-size: 0.846em; }
+
+
+/* ------------------------------------------
+/* Sous-navigation et autres menus
+/* ------------------------------------------ */
+
+/* Listes d'articles et extraits introductifs */
+.articles.logos h3 { margin-bottom: 0.5em; }
+.articles.logos .spip_logo { float: none; margin: 0 0 0.5em; }
+.articles.logos a:hover .spip_logo { filter: grayscale(1); transition: all 0.8s ease; }
+.articles.logos a:hover .spip_logo { filter: grayscale(1); transition: all 0.8s ease; }
+
+.extra .menu .h2,
+.extra .liste .h2 { margin-bottom: 1em; }
+
+.formulaire_recherche { margin: 0; }
+.formulaire_recherche input.text { width: 170px; text-align: center; }
+
+
+/* Couleurs des liens
+---------------------------------------------- */
+a { color: #c9002f; text-decoration: none; }
+a:focus,a:hover,a:active { color: #72051f; text-decoration: underline; background-color: transparent; border-color: transparent; }
+a.spip_out, a.spip_glossaire {  }
+
+/* PlasticZreo / Micro */
+
+.page_sommaire h2 { text-align: center; }
+.page_sommaire h2::after { content: ""; display: block; margin: 1em auto 0; width: 40%; border-bottom: 1px solid rgba(0,0,0,.15); }
+.page_sommaire .programme table.spip tbody tr:hover td { background: transparent; }
+.page_sommaire .programme table.spip td { vertical-align: middle; border: 1px solid; }
+.page_sommaire .footer { margin-top: 0; }

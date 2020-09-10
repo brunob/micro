@@ -1,0 +1,18 @@
+<div class="container">
+	<p class="colophon">
+	<BOUCLE_annee(ARTICLES){par date}{0,1}>[(#DATE|annee|!={#VAL{Y}|date}|oui)[(#DATE|annee)]]</BOUCLE_annee>-</B_annee>[(#DATE|annee)] &mdash; #NOM_SITE_SPIP<br />
+	<a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a><?php
+	if (isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur']) {
+	?><span class="sep"> | </span><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a><?php
+		if (include_spip('inc/autoriser') AND autoriser('ecrire')){
+		?><span class="sep"> | </span><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a><?php
+		}
+	}
+	else {
+	?><span class="sep"> | </span><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF|parametre_url{url,''}})]" rel="nofollow" class='login_modal'><:lien_connecter:></a><?php
+	}
+	?><span class="sep"> |
+	</span><a href="https://www.spip.net/" rel="generator" class="spip_out">Propulsé par SPIP</a><span class="sep"> |
+	</span><a href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>">RSS&nbsp;2.0</a>
+	</p>
+</div>

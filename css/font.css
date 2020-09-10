@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'alegre';
+    src: url('polices/alegresans.woff2') format('woff2'),
+         url('polices/alegresans.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'lora';
+    font-style: normal;
+    font-weight: 400;
+    src: url('polices/lora-v16-latin-regular.woff2') format('woff2'),
+         url('polices/lora-v16-latin-regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'lora';
+    font-style: normal;
+    font-weight: 700;
+    src: url('polices/lora-v16-latin-700.woff2') format('woff2'),
+         url('polices/lora-v16-latin-700.woff') format('woff');
+}
+body { font-family: lora, Georgia,'Century Schoolbook','Times New Roman',serif; color: #444; }

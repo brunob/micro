@@ -1,0 +1,24 @@
+<body>
+	<div class="page">
+		<header class="header" id="header" role="banner">
+			<INCLURE{fond=header/#ENV{type-page},env} />
+		</header>
+		[<nav class="nav" id="nav">
+			(#INCLURE{fond=inclure/nav,env})
+		</nav>]
+		<div class="container[(#SI_PAGE{sommaire}|ou{#SI_PAGE{login}})fullwidth]" id="container">
+			<main class="content" id="content" role="main">
+				[<nav class="breadcrumb" id="breadcrumb" role="navigation">(#SI_PAGE{sommaire}|non)
+					<INCLURE{fond=breadcrumb/#ENV{type-page},env} />
+				</nav>]
+				<INCLURE{fond=content/#ENV{type-page},env} />
+			</main>
+			[<aside class="extra secondary" id="extra" role="complementary">(#SI_PAGE{sommaire}|non)
+				<INCLURE{fond=extra/#ENV{type-page},env} />
+			</aside>]
+		</div>
+		<footer class="footer" id="footer" role="contentinfo">
+			<INCLURE{fond=footer/#ENV{type-page},env} />
+		</footer>
+	</div>
+</body>

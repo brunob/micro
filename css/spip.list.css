@@ -1,0 +1,45 @@
+/* ------------------------------------------
+/* Sous-navigation et autres menus
+/* ------------------------------------------ */
+
+/* Habillage general des menus de navigation */
+.menu { clear: both; margin-bottom: 1.5em; text-align: left; }
+.menu > h1,
+.menu > h2,
+.menu > h3,
+.menu > h4,
+.menu > h5,
+.menu > h6 { margin-bottom: 0; }
+
+/* Listes d'items */
+.liste { margin-bottom: 1.5em; }
+
+.liste-items { margin: 0; padding: 0; list-style: none; border-bottom: 0; margin-bottom: 1.5em; }
+.liste .liste-items { margin-bottom: 0;}
+.liste-items .item { margin-left: 0; padding: 0.75em 0; clear: both; overflow: hidden; }
+.liste-items .item .h3 { margin: 0.5em 0; }
+.liste-items .item .h3 a:hover { text-decoration: none; }
+
+.liste-items .item:hover {  }
+
+.liste-items .item ul { margin-left: 2em; list-style-type: disc; }
+.liste-items .item ol { margin-left: 2em; list-style-type: numeric; }
+
+.liste.long .spip_logo { float: right; clear: right; margin: 0.5em 0.8em; margin-right: 0; margin-top: 0; }
+
+/* Listes spécifiques */
+
+.breadcrumb-items { margin: 0; list-style: none; }
+.breadcrumb-items .item { display: inline; }
+
+.actus .liste-items .item { display: flex; align-items: start; }
+.actus .liste-items .item .date { margin-top: 0.75em; padding: 4px 8px; background: #ededed; text-transform: uppercase; text-align: center; border-radius: 4px; }
+.actus .liste-items .item .date span { display: block; }
+.actus .liste-items .item .date span.day { font-size: 1.4em; color: #666; }
+.actus .liste-items .item .date span.month { font-size: 0.8em; color: #666; }
+.actus .liste-items .item .entry { margin-left: 1em; }
+.actus:not(.evenements) .liste-items .item .entry .publication { display: none; }
+
+/* plan du site */
+ul.plan { margin-bottom: 1.5em; }
+ul.plan li { margin-left: 2em; list-style-type: disc; }

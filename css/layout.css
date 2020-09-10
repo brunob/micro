@@ -1,0 +1,47 @@
+/* --------------------------------------------------------------
+
+   layout.css
+   Disposition des blocs principaux
+
+-------------------------------------------------------------- */
+
+/* ------------------------------------------
+/* Disposition a l'ecran des blocs principaux
+/* ------------------------------------------ */
+body { margin: 0; padding: 0; text-align: center; }
+
+.page { position: relative; width: 100%; text-align: left; }
+
+.header { width: 100%; margin: 0; }
+
+.container { clear: both; overflow: visible; width: 970px; margin: 0 auto; }
+@media (min-width: 768px) { .container { width: 750px; } }
+@media (min-width: 992px) { .container { width: 970px; } }
+@media (min-width: 1200px) { .container { width: 1170px; } }
+
+
+.content { margin-top: 2em; }
+.extra { margin-top: 1.5em; }
+.footer { clear: both; width: 100%; margin: 1.7em 0 0 0; padding: 1.7em 0; text-align: left; font-size: 0.90em; }
+
+/* Gabarit d'impression */
+@media print {
+	.header,
+	.nav,
+	.extra,
+	.footer { display: none; }
+	.page,
+	.content { width: auto; }
+}
+
+@media (max-width: 768px) {
+	/* Passer tous les elements de largeur fixe en largeur automatique */
+	body,
+	.page,
+	.container,
+	.content,
+	.extra { clear: both; float: none !important; width: auto !important; margin: auto !important; }
+	.container { padding: 0 1em; width: 100% !important; }
+	.footer .colophon { padding: 0; }
+	.footer .generator { position: initial; display: block; max-width: none; text-align: center; }
+}

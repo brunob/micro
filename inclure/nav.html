@@ -1,0 +1,22 @@
+<B_rubriques>
+<input type="checkbox" id="nav-toggle" class="offscreen">
+<label for="nav-toggle"><span class="toggle-picto">☰</span> <span class="toggle-text">Menu</span></label>
+<div class="menu" role="navigation">
+	<ul class="liste-items">
+		<li class="item[ (#SI_PAGE{sommaire})on active]">
+			<a href="#URL_SITE_SPIP/"><:zcore:accueil:></a>
+		</li>
+		 <BOUCLE_rubriques(RUBRIQUES){racine}{par num titre, titre}>
+		<li class="item[ (#EXPOSE{on active})]">
+			<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</li>
+	 	</BOUCLE_rubriques>
+		<li class="item[ (#SI_PAGE{agenda})on active]">
+			<a href="#URL_PAGE{agenda}"><:agenda:agenda:></a>
+		</li>
+		<li class="item search" role="search">
+			#FORMULAIRE_RECHERCHE
+		</li>
+	</ul>
+</div>
+</B_rubriques>
