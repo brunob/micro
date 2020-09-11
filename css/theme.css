@@ -59,6 +59,7 @@ body { background: #fff; font-size: 120%; }
 .cartouche .publication { margin: 0; padding: 0; clear: left; }
 .cartouche .publication,
 .cartouche .postmeta,
+.postmeta .tags,
 .entry .publication,
 .entry .postmeta { color: rgba(0,0,0,0.55); }
 .postmeta > :first-child > .sep:first-child { display: none; }
