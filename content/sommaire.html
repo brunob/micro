@@ -29,22 +29,24 @@
 			<p>Les éditions précédentes, leur programme, les publications liées, les archives vidéos, etc.</p>
 		</div>
 
-		<h2>News</h2>
+		<B_actus>
+		<h2>#INFO_TITRE{rubrique,#CONFIG{pz/rub_actus,4}}</h2>
 		<div class="liste long articles logos">
 			<ul class="liste-items grid-3-small-2 has-gutter-xl">
-			<BOUCLE_data(DATA){enum 13,18}>
+			<BOUCLE_actus(ARTICLES){id_rubrique=#CONFIG{pz/rub_actus,4}}{!par date}{0,3}>
 				<li class="item">
 					<h3 class="h3">
 						<a href="#">
-							[(#VAL{http://zeroplastic.islandbiosphere.org/imas/headers/}|concat{#VALEUR}|concat{.jpg}|copie_locale|image_recadre{1.86:1,-,focus}|image_reduire{503}|inserer_attribut{class,spip_logo})]
-							News #VALEUR
+							[(#LOGO_ARTICLE|sinon{#VAL{http://zeroplastic.islandbiosphere.org/imas/headers/}|concat{#VAL{13}|rand{18}}|concat{.jpg}|copie_locale}|image_recadre{1.86:1,-,focus}|image_reduire{503}|inserer_attribut{class,spip_logo})]
+							#TITRE
 						</a>
 					</h3>
-					<p>You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out.</p>
+					[(#CHAPO|sinon{#INTRODUCTION{200}})]
 				</li>
-			</BOUCLE_data>
+			</BOUCLE_actus>
 			</ul>
 		</div>
+		</B_actus>
 	</div>
 
 	<INCLURE{fond=modeles/carte_gis,objets=zitems,
