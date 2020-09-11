@@ -1,6 +1,4 @@
 /* Titraille / Intertitres */
-h1,h2,h3,h4,h5,h6,
-.h1,.h2,.h3,.h4,.h5,.h6 {  }
 h2, .h2 { font-family: alegre; }
 h2, .h2 { font-size : 2.25em; margin-bottom: 1.5em; }
 h1,.h1 { font-weight: bold; color: #000; }
@@ -96,7 +94,6 @@ div.socialtags img { height: 24px; }
 ---------------------------------------------- */
 a { color: #c9002f; text-decoration: none; }
 a:focus,a:hover,a:active { color: #72051f; text-decoration: underline; background-color: transparent; border-color: transparent; }
-a.spip_out, a.spip_glossaire {  }
 
 /* PlasticZreo / Micro */
 

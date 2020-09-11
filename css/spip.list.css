@@ -20,8 +20,6 @@
 .liste-items .item .h3 { margin: 0.5em 0; }
 .liste-items .item .h3 a:hover { text-decoration: none; }
 
-.liste-items .item:hover {  }
-
 .liste-items .item ul { margin-left: 2em; list-style-type: disc; }
 .liste-items .item ol { margin-left: 2em; list-style-type: numeric; }
 
