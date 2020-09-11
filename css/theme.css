@@ -27,22 +27,21 @@ body { background: #fff; font-size: 120%; }
 #container.fullwidth { max-width: none; width: 100%; }
 
 .header { margin: 0; padding : 1.5em 0; position: relative; background: #c9002f; box-shadow: 0 6px 6px -6px rgba(0,0,0,0.2); border-bottom: 1px solid #dedcd2; }
+.header .container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; }
+.header .accueil { z-index: 2000; }
 .header .accueil .spip_logo { float: right; margin: 0 0 0 1.5em; }
 .header .accueil #nom_site_spip { font-family: alegre; font-weight: bold; font-size: 3em; margin-bottom: 0; color: #fff; line-height: 1; }
 .header .accueil a,
 .header .accueil a:hover { color: #fff; text-decoration: none; }
-.header .accueil #slogan_site_spip { display: block; line-height: 1; opacity: 1; font-size: 60%; }
-.header .formulaire_menu_lang { position: absolute; right: 0; top: 0.90em; display: block; width: 30%; } /*Cf.: spip_formulaires.css*/
-.header .formulaire_menu_lang select { width: 100%; }
 
 .nav .liste-items { margin: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .nav .item { padding: 1em 0; }
 .nav .item a { color: #000; text-transform: uppercase; white-space: nowrap; font-family: alegre; font-size: 2em; transition: all 0.3s ease-out; }
 .nav .item.on { font-weight: normal; }
 .nav .item a:hover { color: #fff; text-decoration: none; }
+#nav-toggle-label { z-index: 2000; display: inline-block; line-height: 1; font-weight: bold; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.55); cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 #nav-toggle ~ .menu { top: -100%; transition: all 0.3s ease-in-out; }
 #nav-toggle:checked ~ .menu { top: 0; }
-#nav-toggle ~ label { position: absolute; top: 1.5em; right: 1.5em; z-index: 2000; display: inline-block; line-height: 1; font-weight: bold; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.55); cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 .toggle-picto { font-size: 2em; }
 .toggle-text { font-size: 1.25em; }
 #nav .menu { position: fixed; left: 0; right: 0; height: 100%; overflow-y: auto; background: #c9002f; }
