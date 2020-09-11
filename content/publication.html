@@ -1,0 +1,31 @@
+<BOUCLE_content(ZITEMS){id_zitem=#ENV{id}}>
+<article itemscope itemtype="http://schema.org/Article">
+	<header class="cartouche">
+		<h1><span itemprop="name">#TITRE</span></h1>
+		<p class="publication"><time pubdate="pubdate" itemprop="datePublished">#ANNEE</time>[<span class="authors"><span class="sep">, </span><:par_auteur:> (#AUTEURS)</span>]</p>
+	</header>
+
+	<div class="main" itemprop="articleBody">
+		[<div class="texte surlignable">(#RESUME|paragrapher)</div>]
+		[<p class="hyperlien"><:voir_en_ligne:> : <a href="(#URL)" class="spip_out">[(#URL|couper{80})]</a></p>]
+	</div>
+	<footer>
+		<div class="postmeta">
+			<B_tags>
+			<span class="tags">
+				<span class="sep">|</span>
+				<span class="label"><:mots_clefs:> :</span>
+				<ul class="inline list-inline">
+					#SET{tags,#ARRAY}
+					<BOUCLE_tags(ZTAGS){id_zitem}{par tag}{', '}>
+					#SET{tags,#GET{tags}|push{#TAG}}
+					<li>#TAG</li>
+					</BOUCLE_tags>
+					[<meta itemprop="keywords" content="(#GET{tags}|join{', '})" />]
+				</ul>
+			</span>
+			</B_tags>
+		</div>
+	</footer>
+</article>
+</BOUCLE_content>

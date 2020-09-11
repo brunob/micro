@@ -1,0 +1,8 @@
+<BOUCLE_zitem_head(ZITEMS){id_zitem=#ENV{id}}>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#RESUME|couper{150}|attribut_html)" />]
+[<link rel="canonical" href="(#URL_ZITEM|url_absolue)" />]
+</BOUCLE_zitem_head>
+
+[<link rel="icon" type="image/x-icon" href="(#CHEMIN{favicon.ico}|url_absolue_si)" />
+[<link rel="shortcut icon" type="image/x-icon" href="(#CHEMIN{favicon.ico}|url_absolue_si)" />]]
