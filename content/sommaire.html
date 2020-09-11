@@ -4,17 +4,13 @@
 	</header>
 
 	<div class="main container">
-		<BOUCLE_affiche(RUBRIQUES){id_parent=#CONFIG{pz/rub_conf,1}}{!par date}{0,1}>
-			[(#LOGO_RUBRIQUE|image_reduire{1170,0}|inserer_attribut{class,poster})]
-		</BOUCLE_affiche>
-		<h2>Programme</h2>
+		<BOUCLE_prog(ARTICLES){page=programme}>
+		[(#LOGO_ARTICLE|image_reduire{1170,0}|inserer_attribut{class,poster})]
+		<h2>#TITRE</h2>
 		<div class="programme text-center">
-			<BOUCLE_prog(ARTICLES){page=programme}>
-				#TEXTE
-			</BOUCLE_prog>
-			<p>OU</p>
-			<p>Le programme tiré de l'agenda en mode événements du jour quand la conf est en cours</p>
+			#TEXTE
 		</div>
+		</BOUCLE_prog>
 
 		<h2>Live</h2>
 		<div class="grid-2 has-gutter-xl">
