@@ -98,6 +98,8 @@ a:focus,a:hover,a:active { color: #72051f; text-decoration: underline; backgroun
 
 /* PlasticZreo / Micro */
 
+.main .logo_full { display: block; margin-bottom: 1.5em; }
+
 .page_sommaire h2 { text-align: center; }
 .page_sommaire h2::after { content: ""; display: block; margin: 1em auto 0; width: 40%; border-bottom: 1px solid rgba(0,0,0,.15); }
 .page_sommaire .poster { margin-bottom: 1.5em; }
