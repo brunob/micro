@@ -36,7 +36,7 @@
 			<BOUCLE_actus(ARTICLES){id_rubrique=#CONFIG{pz/rub_actus,4}}{!par date}{0,3}>
 				<li class="item">
 					<h3 class="h3">
-						<a href="#">
+						<a href="#URL_ARTICLE">
 							[(#LOGO_ARTICLE|sinon{#VAL{http://zeroplastic.islandbiosphere.org/imas/headers/}|concat{#VAL{13}|rand{18}}|concat{.jpg}|copie_locale}|image_recadre{1.86:1,-,focus}|image_reduire{503}|inserer_attribut{class,spip_logo})]
 							#TITRE
 						</a>
