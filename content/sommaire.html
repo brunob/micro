@@ -5,47 +5,55 @@
 
 	<div class="main container">
 		<BOUCLE_prog(ARTICLES){page=programme}>
-		[(#LOGO_ARTICLE|image_reduire{1170,0}|inserer_attribut{class,poster})]
-		<h2>#TITRE</h2>
-		<div class="programme text-center">
-			#TEXTE
-		</div>
+		<section class="theme">
+			[(#LOGO_ARTICLE|image_reduire{1170,0}|inserer_attribut{class,poster})]
+			<h2 class="divider">#TITRE</h2>
+			<div class="programme text-center">
+				#TEXTE
+			</div>
+		</section>
 		</BOUCLE_prog>
 
-		<h2>Live</h2>
-		<div class="grid-2 has-gutter-xl">
-			[<div>
-				(#VAL{http://ww2.cnam.fr/cep/aupen/Guide_Moodle/res/BBB_interface.png}|copie_locale|image_recadre{1.86:1,-,focus}|image_reduire{553})
-				<h3 class="text-center">Panel 5.1</h3>
-			</div>]
-			[<div>
-				(#VAL{http://ww2.cnam.fr/cep/aupen/Guide_Moodle/res/BBB_interface.png}|copie_locale|image_recadre{1.86:1,-,focus}|image_reduire{553})
-				<h3 class="text-center">Panel 8.1</h3>
-			</div>]
-		</div>
+		<section class="theme">
+		<h2 class="divider">Live</h2>
+			<div class="grid-2 has-gutter-xl">
+				[<div>
+					(#VAL{http://ww2.cnam.fr/cep/aupen/Guide_Moodle/res/BBB_interface.png}|copie_locale|image_recadre{1.86:1,-,focus}|image_reduire{553})
+					<h3 class="text-center">Panel 5.1</h3>
+				</div>]
+				[<div>
+					(#VAL{http://ww2.cnam.fr/cep/aupen/Guide_Moodle/res/BBB_interface.png}|copie_locale|image_recadre{1.86:1,-,focus}|image_reduire{553})
+					<h3 class="text-center">Panel 8.1</h3>
+				</div>]
+			</div>
+		</section>
 
-		<h2>Archives</h2>
-		<div class="text-center">
-			<p>Les éditions précédentes, leur programme, les publications liées, les archives vidéos, etc.</p>
-		</div>
+		<section class="theme">
+			<h2 class="divider">Archives</h2>
+			<div class="text-center">
+				<p>Les éditions précédentes, leur programme, les publications liées, les archives vidéos, etc.</p>
+			</div>
+		</section>
 
 		<B_actus>
-		<h2>#INFO_TITRE{rubrique,#CONFIG{pz/rub_actus,2}}</h2>
-		<div class="liste long articles logos">
-			<ul class="liste-items grid-3-small-2 has-gutter-xl">
-			<BOUCLE_actus(ARTICLES){id_rubrique=#CONFIG{pz/rub_actus,2}}{!par date}{0,3}>
-				<li class="item">
-					<h3 class="h3">
-						<a href="#URL_ARTICLE">
-							[(#LOGO_ARTICLE|sinon{#VAL{http://zeroplastic.islandbiosphere.org/imas/headers/}|concat{#VAL{13}|rand{18}}|concat{.jpg}|copie_locale}|image_recadre{1.86:1,-,focus}|image_reduire{503}|inserer_attribut{class,spip_logo})]
-							#TITRE
-						</a>
-					</h3>
-					[(#CHAPO|sinon{#INTRODUCTION{200}})]
-				</li>
-			</BOUCLE_actus>
-			</ul>
-		</div>
+		<section class="theme">
+			<h2 class="divider">#INFO_TITRE{rubrique,#CONFIG{pz/rub_actus,2}}</h2>
+			<div class="liste long articles logos">
+				<ul class="liste-items grid-3-small-2 has-gutter-xl">
+				<BOUCLE_actus(ARTICLES){id_rubrique=#CONFIG{pz/rub_actus,2}}{!par date}{0,3}>
+					<li class="item">
+						<h3 class="h3">
+							<a href="#URL_ARTICLE">
+								[(#LOGO_ARTICLE|sinon{#VAL{http://zeroplastic.islandbiosphere.org/imas/headers/}|concat{#VAL{13}|rand{18}}|concat{.jpg}|copie_locale}|image_recadre{1.86:1,-,focus}|image_reduire{503}|inserer_attribut{class,spip_logo})]
+								#TITRE
+							</a>
+						</h3>
+						[(#CHAPO|sinon{#INTRODUCTION{200}})]
+					</li>
+				</BOUCLE_actus>
+				</ul>
+			</div>
+		</section>
 		</B_actus>
 	</div>
 

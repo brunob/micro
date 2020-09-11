@@ -98,10 +98,12 @@ a:focus,a:hover,a:active { color: #72051f; text-decoration: underline; backgroun
 
 /* PlasticZreo / Micro */
 
+h2.divider { text-align: center; }
+h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%; border-bottom: 1px solid rgba(0,0,0,.15); }
+
 .main .logo_full { display: block; margin-bottom: 1.5em; }
 
-.page_sommaire h2 { text-align: center; }
-.page_sommaire h2::after { content: ""; display: block; margin: 1em auto 0; width: 40%; border-bottom: 1px solid rgba(0,0,0,.15); }
+.page_sommaire .theme + .theme { margin-top: 3em; }
 .page_sommaire .poster { margin-bottom: 1.5em; }
 .page_sommaire .programme table.spip tbody tr:hover td { background: transparent; }
 .page_sommaire .programme table.spip td { vertical-align: middle; border: 1px solid; }
