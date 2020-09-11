@@ -104,3 +104,7 @@ a:focus,a:hover,a:active { color: #72051f; text-decoration: underline; backgroun
 .page_sommaire .programme table.spip tbody tr:hover td { background: transparent; }
 .page_sommaire .programme table.spip td { vertical-align: middle; border: 1px solid; }
 .page_sommaire .footer { margin-top: 0; }
+
+.page_publication .hyperlien { text-align: center; }
+.page_publication .hyperlien a { display: inline-block; padding: 0.5em 1em; border: 1px solid rgba(0,0,0,0.85); color: initial; font-weight: bold; transition: all ease 0.3s; }
+.page_publication .hyperlien a:hover { background: #c9002f; border-color: rgba(0,0,0,0.1); color: #fff; text-decoration: none; }
