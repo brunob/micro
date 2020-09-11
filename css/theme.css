@@ -29,9 +29,9 @@ body { background: #fff; font-size: 120%; }
 .header { margin: 0; padding : 1.5em 0; position: relative; background: #c9002f; box-shadow: 0 6px 6px -6px rgba(0,0,0,0.2); border-bottom: 1px solid #dedcd2; }
 .header .accueil { text-shadow: 0 1px 3px rgba(0,0,0,0.55); }
 .header .accueil .spip_logo { float: right; margin: 0 0 0 1.5em; }
-.header .accueil #nom_site_spip,
-.header .accueil #nom_site_spip a { font-family: alegre; font-weight: bold; font-size: 3em; margin-bottom: 0; color: #fff; line-height: 1; }
-.header .accueil #nom_site_spip a:hover { text-decoration: none; }
+.header .accueil #nom_site_spip { font-family: alegre; font-weight: bold; font-size: 3em; margin-bottom: 0; color: #fff; line-height: 1; }
+.header .accueil a,
+.header .accueil a:hover { color: #fff; text-decoration: none; }
 .header .accueil #slogan_site_spip { display: block; line-height: 1; opacity: 1; font-size: 60%; }
 .header .formulaire_menu_lang { position: absolute; right: 0; top: 0.90em; display: block; width: 30%; } /*Cf.: spip_formulaires.css*/
 .header .formulaire_menu_lang select { width: 100%; }
