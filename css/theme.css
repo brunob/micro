@@ -41,10 +41,9 @@ body { background: #fff; font-size: 120%; }
 .nav .item a { color: #000; text-transform: uppercase; white-space: nowrap; font-family: alegre; font-size: 2em; transition: all 0.3s ease-out; }
 .nav .item.on { font-weight: normal; }
 .nav .item a:hover { color: #fff; text-decoration: none; }
-#nav { position: absolute; }
 #nav-toggle ~ .menu { top: -100%; transition: all 0.3s ease-in-out; }
 #nav-toggle:checked ~ .menu { top: 0; }
-#nav-toggle ~ label { position: fixed; top: 1em; right: 0; z-index: 2000; display: inline-block; padding: 0.5em 1.5em 1em 0.5em; line-height: 1; font-weight: bold; color: #fff; background: #c9002f; text-shadow: 0 1px 3px rgba(0,0,0,0.55); cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+#nav-toggle ~ label { position: absolute; top: 1.5em; right: 1.5em; z-index: 2000; display: inline-block; line-height: 1; font-weight: bold; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.55); cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 .toggle-picto { font-size: 2em; }
 .toggle-text { font-size: 1.25em; }
 #nav .menu { position: fixed; left: 0; right: 0; height: 100%; overflow-y: auto; background: #c9002f; }
