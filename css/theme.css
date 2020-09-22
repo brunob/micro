@@ -87,7 +87,7 @@ div.socialtags img { height: 24px; }
 .extra .liste .h2 { margin-bottom: 1em; }
 
 .formulaire_recherche { margin: 0; }
-.formulaire_recherche input.text { width: 170px; text-align: center; }
+.formulaire_recherche input.text { min-width: 240px; text-align: center; padding: 0.25em; }
 
 
 /* Couleurs des liens
