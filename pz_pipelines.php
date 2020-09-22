@@ -23,7 +23,7 @@ function pz_taches_generales_cron($taches_generales) {
  * @param array $flux Le contexte d'environnement du pipeline
  * @return array $flux Le contexte d'environnement modifié
  */
-function resa_gis_modele_parametres_autorises($flux){
-	$flux[] = 'id_zcollection';
+function pz_gis_modele_parametres_autorises($flux){
+	$flux[] = 'collection';
 	return $flux;
 }
