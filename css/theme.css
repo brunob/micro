@@ -68,8 +68,7 @@ body { background: #fff; font-size: 120%; }
 div.socialtags { clear: none; margin-top: 0.75em; }
 div.socialtags img { height: 24px; }
 
-.chapo { margin-bottom: 1.5em; font-weight: bold; color: #666; }
-.chapo .spip_cadre {color: #888; }
+.chapo { margin-bottom: 1.5em; font-weight: bold; font-size: 1.25em; color: rgba(0, 0, 0, 0.7); }
 .ps, .notes { margin-bottom: 1.5em; }
 .notes { clear: both; font-size: 0.846em; }
 
@@ -80,7 +79,7 @@ div.socialtags img { height: 24px; }
 
 /* Listes d'articles et extraits introductifs */
 .articles.logos h3 { margin-bottom: 0.5em; }
-.articles.logos .spip_logo { float: none; margin: 0 0 0.5em; }
+.long.logos .spip_logo { float: none; margin: 0 0 0.5em; }
 .articles.logos a:hover .spip_logo { filter: grayscale(1); transition: all 0.8s ease; }
 .articles.logos a:hover .spip_logo { filter: grayscale(1); transition: all 0.8s ease; }
 
@@ -108,6 +107,9 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .page_sommaire .programme table.spip tbody tr:hover td { background: transparent; }
 .page_sommaire .programme table.spip td { vertical-align: middle; border: 1px solid; }
 .page_sommaire .footer { margin-top: 0; }
+
+.rubrique_conference .main .logo { margin-bottom: 3em; }
+.rubrique_conference .liste.articles .item { padding: 0; }
 
 .page_publication .hyperlien { text-align: center; }
 .page_publication .hyperlien a { display: inline-block; padding: 0.5em 1em; border: 1px solid rgba(0,0,0,0.85); color: initial; font-weight: bold; transition: all ease 0.3s; }

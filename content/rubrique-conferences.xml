@@ -1,0 +1,6 @@
+<composition>
+	<nom>Rubrique conferences</nom>
+	<description>Composition adaptée pour la rubrique des conférences.</description>
+	<icon>images/objet-liste-contenus.png</icon>
+	<branche type="rubrique" composition="conference" />
+</composition>

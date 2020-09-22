@@ -1,0 +1,26 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+<section>
+	<header class="cartouche">
+		<h1>#TITRE</h1>
+	</header>
+
+	<div class="main">
+		[<div class="#EDIT{texte} chapo">(#TEXTE|adaptive_images)</div>]
+
+		<B_sous_rubriques>
+		<div class="liste long rubriques logos">
+			<ul class="liste-items">
+				<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre, titre}>
+				<li class="item text-center">
+					<a href="#URL_RUBRIQUE">
+						[(#TITRE)]
+						[(#LOGO_RUBRIQUE|image_reduire{680})]
+					</a>
+				</li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+		</div>
+		</B_sous_rubriques>
+	</div>
+</section>
+</BOUCLE_content>
