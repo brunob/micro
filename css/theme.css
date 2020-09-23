@@ -111,6 +111,11 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .rubrique_conference .main .logo { margin-bottom: 3em; }
 .rubrique_conference .liste.articles .item { padding: 0; }
 
+.page_publications #content,
+.page_publications .footer { margin: 0; }
+.page_publications .page #container { max-width: none; position: relative;  width: 100% !important; padding: 0 !important; }
+.page_publications .carte_gis { position: absolute; height: auto !important; top:0; bottom: 0; }
+
 .page_publication .hyperlien { text-align: center; }
 .page_publication .hyperlien a { display: inline-block; padding: 0.5em 1em; border: 1px solid rgba(0,0,0,0.85); color: initial; font-weight: bold; transition: all ease 0.3s; }
 .page_publication .hyperlien a:hover { background: #c9002f; border-color: rgba(0,0,0,0.1); color: #fff; text-decoration: none; }
