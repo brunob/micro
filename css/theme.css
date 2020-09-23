@@ -116,6 +116,9 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .page_sommaire .poster { margin-bottom: 1.5em; }
 .page_sommaire .programme table.spip tbody tr:hover td { background: transparent; }
 .page_sommaire .programme table.spip td { vertical-align: middle; border: 1px solid; }
+.page_sommaire .map_home { position: relative; }
+.page_sommaire .map_home .overlay { position: absolute; top: 0; left: 0; z-index: 1000; display: flex; justify-content: center; align-items: center; height: 100%; width: 100%; background: rgba(255,255,255,0.7); }
+.page_sommaire .map_home .overlay .hyperlien { background: #fff; }
 .page_sommaire .footer { margin-top: 0; }
 
 .rubrique_conference .main .logo { margin-bottom: 3em; }
