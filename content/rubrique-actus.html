@@ -1,0 +1,17 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}>
+<section>
+	<header class="cartouche">
+		<h1>#TITRE</h1>
+		[<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]"><:dernier_ajout:> : (#DATE|affdate_jourcourt).</time></p>]
+	</header>
+
+	<div class="main">
+		[<div class="#EDIT{texte} chapo">(#TEXTE|adaptive_images)</div>]
+
+		<div class="liste long articles logos">
+		<INCLURE{fond=inclure/liste/actus,env,ajax,
+			class_liste='grid-3-small-2 has-gutter-xl'}>
+		</div>
+	</div>
+</section>
+</BOUCLE_content>
