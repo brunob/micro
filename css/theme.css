@@ -102,6 +102,15 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 
 .main .logo_full { display: block; margin-bottom: 1.5em; }
 
+#colorbox { background: #fff; }
+#cboxLoadedContent { margin-bottom: 0; }
+#cboxContent article { text-align: left; }
+#cboxClose { top: 8px; right: 10px; }
+
+.hyperlien { text-align: center; }
+.hyperlien a { display: inline-block; padding: 0.5em 1em; border: 1px solid rgba(0,0,0,0.85); color: initial; font-weight: bold; transition: all ease 0.3s; }
+.hyperlien a:hover { background: #c9002f; border-color: rgba(0,0,0,0.1); color: #fff; text-decoration: none; }
+
 .page_sommaire .theme + .theme { margin-top: 3em; }
 .page_sommaire .poster { margin-bottom: 1.5em; }
 .page_sommaire .programme table.spip tbody tr:hover td { background: transparent; }
@@ -116,11 +125,12 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .page_publications .page #container { max-width: none; position: relative;  width: 100% !important; padding: 0 !important; }
 .page_publications .carte_gis { position: absolute; height: auto !important; top:0; bottom: 0; }
 
-#colorbox { background: #fff; }
-#cboxLoadedContent { margin-bottom: 0; }
-#cboxContent article { text-align: left; }
-#cboxClose { top: 8px; right: 10px; }
-
-.hyperlien { text-align: center; }
-.hyperlien a { display: inline-block; padding: 0.5em 1em; border: 1px solid rgba(0,0,0,0.85); color: initial; font-weight: bold; transition: all ease 0.3s; }
-.hyperlien a:hover { background: #c9002f; border-color: rgba(0,0,0,0.1); color: #fff; text-decoration: none; }
+.page_login .content { max-width: 360px; margin: 0 auto; padding: 1em 0; text-align: center; }
+.page_login #breadcrumb,
+.page_login .cartouche h1 small,
+.page_login #formulaire_menu_lang,
+.page_login #formulaire_login legend,
+.page_login #formulaire_login #spip_logo_auteur,
+.page_login .formulaire_login #pass_securise { display: none !important; }
+.page_login .formulaire_login *,
+.page_login .formulaire_login label { text-align: center; }
