@@ -49,6 +49,13 @@
 				$('#map1').on('ready', function(){
 					var map = this.map
 						points = map.markerCluster.getLayers();
+					// popup to modal
+					map.markerCluster.on('click', function (e) {
+						$.modalbox('#URL_PAGE{publication}' + '?id=' + e.layer.id + '&var_zajax=content',{
+							width: '680px'
+						});
+					});
+					// filtrer la carte en fonction de la collection demdandée
 					L.DomUtil.get('map_filter_select').onchange = function(){
 						var filter = this.value,
 							pointsFilter = [];

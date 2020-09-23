@@ -3,9 +3,7 @@
 	"geometry": {"type": "Point", "coordinates": \[#LON, #LAT\]},
 	"id":"[(#ID_ZITEM)]",
 	"properties": {
-		"title":[(#ID_ZITEM*|extraire_multi|supprimer_numero|json_encode)],
-		"collection":[(#ID_ZCOLLECTION|json_encode)],
-		"description":[(#TITRE|json_encode)][
-		(#LOGO_GIS|gis_icon_properties)]
+		"noclick": true,
+		"collection":[(#ID_ZCOLLECTION|json_encode)]
 	}}
 ]</BOUCLE_items>
