@@ -14,65 +14,65 @@
 			</select>
 		</div>
 		</B_collections>
-			
-			<INCLURE{fond=modeles/carte_gis,objets=zitems,
-				collection,
-				autocenterandzoom=oui,
-				height=500px,
-				cluster=oui,
-				clusterSpiderfyOnMaxZoom=oui,
-				singleMarkerMode=oui}>
-			
+
+		<INCLURE{fond=modeles/carte_gis,objets=zitems,
+			collection,
+			autocenterandzoom=oui,
+			height=500px,
+			cluster=oui,
+			clusterSpiderfyOnMaxZoom=oui,
+			singleMarkerMode=oui}>
+
 		<script type="text/javascript">
-			/*<![CDATA[*/
-				$('#map1').on('load', function(){
-					this.map.options.clusterOptions.iconCreateFunction = function(cluster) {
-						var childCount = cluster.getChildCount();
-						var c = ' marker-cluster-';
-						if (childCount == 1) {
-							c += 'dot';
-						} else if (childCount < 10) {
-							c += 'small';
-						} else if (childCount < 50) {
-							c += 'medium';
-						} else {
-							c += 'large';
-						}
-						return new L.DivIcon({ html: '<div><span>' + ((childCount == 1) ? '' : childCount) + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+		/*<![CDATA[*/
+			$('#map1').on('load', function(){
+				this.map.options.clusterOptions.iconCreateFunction = function(cluster) {
+					var childCount = cluster.getChildCount();
+					var c = ' marker-cluster-';
+					if (childCount == 1) {
+						c += 'dot';
+					} else if (childCount < 10) {
+						c += 'small';
+					} else if (childCount < 50) {
+						c += 'medium';
+					} else {
+						c += 'large';
 					}
-					// palcer le select des filtres dans un bloc de control de la carte
-					if(L.DomUtil.get('map_filter')) {
-						this.map._controlCorners.topright.appendChild(L.DomUtil.get('map_filter'));
-					}
-				});
-				$('#map1').on('ready', function(){
-					var map = this.map
-						points = map.markerCluster.getLayers();
-					// popup to modal
-					map.markerCluster.on('click', function (e) {
-						$.modalbox('#URL_PAGE{publication}' + '?id=' + e.layer.id + '&var_zajax=content',{
-							width: '680px'
-						});
+					return new L.DivIcon({ html: '<div><span>' + ((childCount == 1) ? '' : childCount) + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+				}
+				// palcer le select des filtres dans un bloc de control de la carte
+				if(L.DomUtil.get('map_filter')) {
+					this.map._controlCorners.topright.appendChild(L.DomUtil.get('map_filter'));
+				}
+			});
+			$('#map1').on('ready', function(){
+				var map = this.map
+					points = map.markerCluster.getLayers();
+				// popup to modal
+				map.markerCluster.on('click', function (e) {
+					$.modalbox('#URL_PAGE{publication}' + '?id=' + e.layer.id + '&var_zajax=content',{
+						width: '680px'
 					});
-					// filtrer la carte en fonction de la collection demdandée
-					L.DomUtil.get('map_filter_select').onchange = function(){
-						var filter = this.value,
-							pointsFilter = [];
-							map.markerCluster.clearLayers();
-						if (filter.length > 0) {
-							for (i = 0; i < points.length; i++) {
-								layer = points[i];
-								if (layer.feature.properties.collection == filter) {
-									pointsFilter.push(layer);
-								}
-							};
-							map.markerCluster.addLayers(pointsFilter);
-						} else {
-							map.markerCluster.addLayers(points);
-						}
-					};
 				});
-			/*]]>*/
+				// filtrer la carte en fonction de la collection demdandée
+				L.DomUtil.get('map_filter_select').onchange = function(){
+					var filter = this.value,
+						pointsFilter = [];
+						map.markerCluster.clearLayers();
+					if (filter.length > 0) {
+						for (i = 0; i < points.length; i++) {
+							layer = points[i];
+							if (layer.feature.properties.collection == filter) {
+								pointsFilter.push(layer);
+							}
+						};
+						map.markerCluster.addLayers(pointsFilter);
+					} else {
+						map.markerCluster.addLayers(points);
+					}
+				};
+			});
+		/*]]>*/
 		</script>
 	</div>
 </section>
