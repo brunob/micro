@@ -39,7 +39,6 @@ body { margin: 0; padding: 0; text-align: center; }
 	body,
 	.page,
 	.container,
-	.content,
 	.extra { clear: both; float: none !important; width: auto !important; margin: auto !important; }
 	.container { padding: 0 1em; width: 100% !important; }
 	.footer .colophon { padding: 0; }
