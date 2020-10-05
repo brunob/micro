@@ -41,7 +41,11 @@ body { background: #fff; font-size: 120%; }
 #nav-toggle ~ .menu { top: -100%; transition: all 0.3s ease-in-out; }
 #nav-toggle:checked ~ .menu { top: 0; }
 .toggle-picto { font-size: 2em; }
-.toggle-text { font-size: 1.25em; }
+.toggle-text { font-size: 1.5em; }
+@media (max-width: 576px) {
+    .toggle-picto { font-size: 2.5em; }
+    .toggle-text { display: none; }
+}
 #nav .menu { position: fixed; left: 0; right: 0; height: 100%; overflow-y: auto; background: #c9002f; z-index: 1999; }
 
 .footer { background: #333; }
