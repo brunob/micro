@@ -1,0 +1,12 @@
+<section>
+	<header class="cartouche">
+		<h1>[(#SESSION{id_auteur}|?{<:pz:titre_csv2bib:>,<:avis_acces_interdit:>})]</h1>
+	</header>
+	<div class="main">
+		[(#SESSION{id_auteur}|non)
+		#LOGIN_PUBLIC
+		][(#SESSION{id_auteur}|oui)
+		#FORMULAIRE_CSV2BIB
+		]
+	</div>
+</section>
