@@ -203,8 +203,6 @@ function pz_locate_affiliation($affiliation) {
 }
 
 function pz_locate_wikidata($search, $location, $precision) {
-	// localiser la structure (université, etc) en utilisant plusieurs APIs dans l'ordre wikidata, nominatim (OSM) (geonames en plus ?)
-	// process wikidata pompé sur PUMA https://github.com/OllyButters/puma/blob/master/source/add/geocode.py#L79
 	$wikidata_endpoint = 'https://query.wikidata.org/sparql?format=json';
 	$wikidata_query = '
 	SELECT ?item ?itemLabel ?country ?countryLabel ?mainTown ?mainTownLabel ?mainLon ?mainLat ?hqTownLabel ?hqLon ?hqLat
