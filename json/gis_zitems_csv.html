@@ -1,0 +1,9 @@
+<BOUCLE_items(DATA){source csv, #CHEMIN{master.csv}}{1,n}{","}>[(#VALEUR{affiliation}|pz_locate_affiliation|oui)
+    {"type": "Feature",
+    "geometry": {"type": "Point", "coordinates": \[[(#VALEUR{affiliation}|pz_locate_affiliation|table_valeur{lon})], [(#VALEUR{affiliation}|pz_locate_affiliation|table_valeur{lat})]\]},
+    "id":"[(#VALEUR{chapter})]",
+    "properties": {
+        "title":[(#VALEUR{chapter}|json_encode)][
+        (#LOGO_GIS|gis_icon_properties)]
+    }}
+]</BOUCLE_items>
