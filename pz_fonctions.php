@@ -55,59 +55,9 @@ function pz_locate_zitem($id_zitem) {
 
 	// localiser la structure (université, etc) en utilisant plusieurs APIs dans l'ordre wikidata, nominatim (OSM) (geonames en plus ?)
 	// process wikidata pompé sur PUMA https://github.com/OllyButters/puma/blob/master/source/add/geocode.py#L79
-	$wikidata_endpoint = 'https://query.wikidata.org/sparql?format=json';
-	$wikidata_query = '
-	SELECT ?item ?itemLabel ?country ?countryLabel ?mainTown ?mainTownLabel ?mainLon ?mainLat ?hqTownLabel ?hqLon ?hqLat
-	WHERE {
-		?item rdfs:label "' . $candidates['name'] . '"@en.
-		?item wdt:P17 ?country
-		OPTIONAL
-		{
-			?item wdt:P131 ?mainTown
-		}
-		OPTIONAL
-		{
-			?item p:P625 ?mainLocation.
-			?mainLocation psv:P625 ?mainCoordinateNode.
-			?mainCoordinateNode wikibase:geoLongitude ?mainLon.
-			?mainCoordinateNode wikibase:geoLatitude ?mainLat.
-		}
-		OPTIONAL
-		{
-			?item wdt:P159 ?hqTown.
-		}
-		OPTIONAL
-		{
-			?item wdt:P159 ?hq2.
-			?hq2 p:P625 ?hq3.
-			?hq3 psv:P625 ?hq4.
-			?hq4 wikibase:geoLongitude ?hqLon.
-			?hq4 wikibase:geoLatitude ?hqLat.
-		}
-		SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-	}';
-	$wikidata_url = parametre_url($wikidata_endpoint, 'query', $wikidata_query, '&');
-	$wikidata_res = recuperer_url_cache($wikidata_url);
-	if ($wikidata_res['status'] == 200 and $wikidata_res['length']) {
-		$wikidata_data = json_decode($wikidata_res['page'], true);
-		if (isset($wikidata_data['results']['bindings'][0]['countryLabel']['value'])) {
-			$location['country'] = $wikidata_data['results']['bindings'][0]['countryLabel']['value'];
-		}
-		if (isset($wikidata_data['results']['bindings'][0]['mainTownLabel']['value'])) {
-			$location['city'] = $wikidata_data['results']['bindings'][0]['mainTownLabel']['value'];
-			$location['lat'] = $wikidata_data['results']['bindings'][0]['mainLat']['value'];
-			$location['lon'] = $wikidata_data['results']['bindings'][0]['mainLon']['value'];
-			$location['source'] = 1;
-		} elseif (isset($wikidata_data['results']['bindings'][0]['hqTownLabel']['value'])) {
-			$location['city'] = $wikidata_data['results']['bindings'][0]['hqTownLabel']['value'];
-			$location['lat'] = $wikidata_data['results']['bindings'][0]['hqLat']['value'];
-			$location['lon'] = $wikidata_data['results']['bindings'][0]['hqLon']['value'];
-			$location['source'] = 2;
-		}
-	}
+	$location = pz_locate_wikidata($affiliation, $location, 0);
 
 	if (!isset($location['lat']) or $location['source'] == '2') {
-		$nominatim_endpoint = 'https://nominatim.openstreetmap.org/search/?format=json&addressdetails=1&limit=1&q=';
 		$nominatim_query = $candidates['name'];
 		if (isset($candidates['city'])) {
 			$nominatim_query .= ', ' . $candidates['city'];
@@ -115,31 +65,13 @@ function pz_locate_zitem($id_zitem) {
 		if (isset($candidates['country'])) {
 			$nominatim_query .= ', ' . $candidates['country'];
 		}
-		$nominatim_url = $nominatim_endpoint . urlencode($nominatim_query);
-		$nominatim_res = recuperer_url_cache($nominatim_url);
-		if ($nominatim_res['status'] == 200 and $nominatim_res['length']) {
-			$nominatim_data = json_decode($nominatim_res['page'], true);
-			if ($nominatim_data[0]['lat']) {
-				$location['country'] = $candidates['country'];
-				$location['city'] = $candidates['city'];
-				$location['lat'] = $nominatim_data[0]['lat'];
-				$location['lon'] = $nominatim_data[0]['lon'];
-				$location['source'] = 3;
-			}
-		}
+
+		$location = pz_locate_osm($nominatim_query, $location, 2);
+
 		if (!isset($location['lat']) and isset($candidates['city']) and isset($candidates['country'])) {
 			// plan B, si l'adresse n'est pas trouvé, chercher simplement sur la ville
 			$nominatim_query = $candidates['city'] . ', ' . $candidates['country'];
-			$nominatim_url = $nominatim_endpoint . urlencode($nominatim_query);
-			$nominatim_res = recuperer_url_cache($nominatim_url);
-			if ($nominatim_res['status'] == 200 and $nominatim_res['length']) {
-				$nominatim_data = json_decode($nominatim_res['page'], true);
-				if ($nominatim_data[0]['lat']) {
-					$location['lat'] = $nominatim_data[0]['lat'];
-					$location['lon'] = $nominatim_data[0]['lon'];
-					$location['source'] = 4;
-				}
-			}
+			$location = pz_locate_osm($nominatim_query, $location, 3);
 		}
 	}
 
