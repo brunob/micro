@@ -157,7 +157,7 @@ function pz_get_location($id_zitem) {
 		spip_log('erreur lors de la récupération des données wikidata pour le zitem '. $id_zitem, 'pz');
 	}
 
-	if (!isset($location['lat']) or $location['source'] == 'wikidata head quarter') {
+	if (!isset($location['lat']) or $location['source'] == 2) {
 		$nominatim_endpoint = 'https://nominatim.openstreetmap.org/search/?format=json&addressdetails=1&limit=1&q=';
 		$nominatim_query = $zitem['institute'];
 		if (isset($zitem['city'])) {
