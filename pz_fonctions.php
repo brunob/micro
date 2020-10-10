@@ -55,7 +55,7 @@ function pz_locate_zitem($id_zitem) {
 
 	// localiser la structure (université, etc) en utilisant plusieurs APIs dans l'ordre wikidata, nominatim (OSM) (geonames en plus ?)
 	// process wikidata pompé sur PUMA https://github.com/OllyButters/puma/blob/master/source/add/geocode.py#L79
-	$location = pz_locate_wikidata($affiliation, $location, 0);
+	$location = pz_locate_wikidata($affiliation, $location, 1);
 
 	if (!isset($location['lat']) or $location['source'] == '2') {
 		$nominatim_query = $candidates['name'];
@@ -66,12 +66,12 @@ function pz_locate_zitem($id_zitem) {
 			$nominatim_query .= ', ' . $candidates['country'];
 		}
 
-		$location = pz_locate_osm($nominatim_query, $location, 2);
+		$location = pz_locate_osm($nominatim_query, $location, 3);
 
 		if (!isset($location['lat']) and isset($candidates['city']) and isset($candidates['country'])) {
 			// plan B, si l'adresse n'est pas trouvé, chercher simplement sur la ville
 			$nominatim_query = $candidates['city'] . ', ' . $candidates['country'];
-			$location = pz_locate_osm($nominatim_query, $location, 3);
+			$location = pz_locate_osm($nominatim_query, $location, 4);
 		}
 	}
 
@@ -107,23 +107,23 @@ function pz_locate_zitem($id_zitem) {
 function pz_locate_affiliation($affiliation) {
 	$location = array();
 
-	$location = pz_locate_wikidata($affiliation, $location, 0);
+	$location = pz_locate_wikidata($affiliation, $location, 1);
 
 	if (!isset($location['lat']) or $location['source'] == 2) {
-		$location = pz_locate_osm($affiliation, $location, 2);
+		$location = pz_locate_osm($affiliation, $location, 3);
 	}
 
 	if (!isset($location['lat'])) {
 		$name = rtrim(preg_replace('/ \(.*\)/', '', $affiliation));
-		$location = pz_locate_wikidata($name, $location, 3);
+		$location = pz_locate_wikidata($name, $location, 4);
 
 		if (!isset($location['lat']) or $location['source'] == 5) {
-			$location = pz_locate_osm($name, $location, 5);
+			$location = pz_locate_osm($name, $location, 6);
 		}
 
 		if (!isset($location['lat'])) {
 			preg_match('/\((.*)\)/', $affiliation, $regs);
-			$location = pz_locate_osm($regs[1], $location, 6);
+			$location = pz_locate_osm($regs[1], $location, 7);
 		}
 	}
 
@@ -177,12 +177,12 @@ function pz_locate_wikidata($search, $location, $precision) {
 			$location['city'] = $wikidata_data['results']['bindings'][0]['mainTownLabel']['value'];
 			$location['lat'] = $wikidata_data['results']['bindings'][0]['mainLat']['value'];
 			$location['lon'] = $wikidata_data['results']['bindings'][0]['mainLon']['value'];
-			$location['source'] = $precision + 1;
+			$location['source'] = $precision;
 		} elseif (isset($wikidata_data['results']['bindings'][0]['hqTownLabel']['value'])) {
 			$location['city'] = $wikidata_data['results']['bindings'][0]['hqTownLabel']['value'];
 			$location['lat'] = $wikidata_data['results']['bindings'][0]['hqLat']['value'];
 			$location['lon'] = $wikidata_data['results']['bindings'][0]['hqLon']['value'];
-			$location['source'] = $precision + 2;
+			$location['source'] = $precision + 1;
 		}
 	}
 	return $location;
@@ -200,7 +200,7 @@ function pz_locate_osm($search, $location, $precision) {
 			$location['city'] = $candidates['city'];
 			$location['lat'] = $nominatim_data[0]['lat'];
 			$location['lon'] = $nominatim_data[0]['lon'];
-			$location['source'] = $precision + 1;
+			$location['source'] = $precision;
 		}
 	}
 	return $location;
