@@ -191,7 +191,7 @@ function pz_locate_wikidata($search, $location, $precision) {
 function pz_locate_osm($search, $location, $precision) {
 	$nominatim_endpoint = 'https://nominatim.openstreetmap.org/search/?format=json&addressdetails=1&limit=1&q=';
 	$nominatim_query = $search;
-	$nominatim_url = $nominatim_endpoint . urlencode($nominatim_query);
+	$nominatim_url = $nominatim_endpoint . $nominatim_query;
 	$nominatim_res = recuperer_url_cache($nominatim_url);
 	if ($nominatim_res['status'] == 200 and $nominatim_res['length']) {
 		$nominatim_data = json_decode($nominatim_res['page'], true);
