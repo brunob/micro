@@ -100,7 +100,7 @@ function pz_locate_zitem($id_zitem) {
  *       4 : wikidata main town short
  *       5 : wikidata head quarter short
  *       6 : nominatim institute short
- *       7 : nominatim addess
+ *       7 : nominatim address
  *     array doi données renvoyées par l'API DOI
  *     array scopus données renvoyées par l'API scopus 
  **/
@@ -111,6 +111,9 @@ function pz_locate_affiliation($affiliation) {
 
 	if (!isset($location['lat']) or $location['source'] == 2) {
 		$location = pz_locate_osm($affiliation, $location, 3);
+		if (!isset($location['lat'])) {
+			$location = pz_locate_photon($affiliation, $location, 3);
+		}
 	}
 
 	if (!isset($location['lat'])) {
@@ -119,11 +122,17 @@ function pz_locate_affiliation($affiliation) {
 
 		if (!isset($location['lat']) or $location['source'] == 5) {
 			$location = pz_locate_osm($name, $location, 6);
+			if (!isset($location['lat'])) {
+				$location = pz_locate_photon($name, $location, 6);
+			}
 		}
 
 		if (!isset($location['lat'])) {
 			preg_match('/\((.*)\)/', $affiliation, $regs);
 			$location = pz_locate_osm($regs[1], $location, 7);
+			if (!isset($location['lat'])) {
+				$location = pz_locate_photon($regs[1], $location, 6);
+			}
 		}
 	}
 
@@ -135,8 +144,8 @@ function pz_locate_affiliation($affiliation) {
 }
 
 function pz_locate_wikidata($search, $location, $precision) {
-	$wikidata_endpoint = 'https://query.wikidata.org/sparql?format=json';
-	$wikidata_query = '
+	$endpoint = 'https://query.wikidata.org/sparql?format=json';
+	$query = '
 	SELECT ?item ?itemLabel ?country ?countryLabel ?mainTown ?mainTownLabel ?mainLon ?mainLat ?hqTownLabel ?hqLon ?hqLat
 	WHERE {
 		?item rdfs:label "' . $search . '"@en.
@@ -166,22 +175,22 @@ function pz_locate_wikidata($search, $location, $precision) {
 		}
 		SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 	}';
-	$wikidata_url = parametre_url($wikidata_endpoint, 'query', $wikidata_query, '&');
-	$wikidata_res = recuperer_url_cache($wikidata_url);
-	if ($wikidata_res['status'] == 200 and $wikidata_res['length']) {
-		$wikidata_data = json_decode($wikidata_res['page'], true);
-		if (isset($wikidata_data['results']['bindings'][0]['countryLabel']['value'])) {
-			$location['country'] = $wikidata_data['results']['bindings'][0]['countryLabel']['value'];
+	$url = parametre_url($endpoint, 'query', $query, '&');
+	$res = recuperer_url_cache($url);
+	if ($res['status'] == 200 and $res['length']) {
+		$data = json_decode($res['page'], true);
+		if (isset($data['results']['bindings'][0]['countryLabel']['value'])) {
+			$location['country'] = $data['results']['bindings'][0]['countryLabel']['value'];
 		}
-		if (isset($wikidata_data['results']['bindings'][0]['mainTownLabel']['value'])) {
-			$location['city'] = $wikidata_data['results']['bindings'][0]['mainTownLabel']['value'];
-			$location['lat'] = $wikidata_data['results']['bindings'][0]['mainLat']['value'];
-			$location['lon'] = $wikidata_data['results']['bindings'][0]['mainLon']['value'];
+		if (isset($data['results']['bindings'][0]['mainTownLabel']['value'])) {
+			$location['city'] = $data['results']['bindings'][0]['mainTownLabel']['value'];
+			$location['lat'] = $data['results']['bindings'][0]['mainLat']['value'];
+			$location['lon'] = $data['results']['bindings'][0]['mainLon']['value'];
 			$location['source'] = $precision;
-		} elseif (isset($wikidata_data['results']['bindings'][0]['hqTownLabel']['value'])) {
-			$location['city'] = $wikidata_data['results']['bindings'][0]['hqTownLabel']['value'];
-			$location['lat'] = $wikidata_data['results']['bindings'][0]['hqLat']['value'];
-			$location['lon'] = $wikidata_data['results']['bindings'][0]['hqLon']['value'];
+		} elseif (isset($data['results']['bindings'][0]['hqTownLabel']['value'])) {
+			$location['city'] = $data['results']['bindings'][0]['hqTownLabel']['value'];
+			$location['lat'] = $data['results']['bindings'][0]['hqLat']['value'];
+			$location['lon'] = $data['results']['bindings'][0]['hqLon']['value'];
 			$location['source'] = $precision + 1;
 		}
 	}
@@ -189,17 +198,34 @@ function pz_locate_wikidata($search, $location, $precision) {
 }
 
 function pz_locate_osm($search, $location, $precision) {
-	$nominatim_endpoint = 'https://nominatim.openstreetmap.org/search/?format=json&addressdetails=1&limit=1&q=';
-	$nominatim_query = $search;
-	$nominatim_url = $nominatim_endpoint . $nominatim_query;
-	$nominatim_res = recuperer_url_cache($nominatim_url);
-	if ($nominatim_res['status'] == 200 and $nominatim_res['length']) {
-		$nominatim_data = json_decode($nominatim_res['page'], true);
-		if ($nominatim_data[0]['lat']) {
+	$endpoint = 'https://nominatim.openstreetmap.org/search/?format=json&addressdetails=1&limit=1&q=';
+	$query = $search;
+	$url = $endpoint . $query;
+	$res = recuperer_url_cache($url);
+	if ($res['status'] == 200 and $res['length']) {
+		$data = json_decode($res['page'], true);
+		if ($data[0]['lat']) {
 			$location['country'] = $candidates['country'];
 			$location['city'] = $candidates['city'];
-			$location['lat'] = $nominatim_data[0]['lat'];
-			$location['lon'] = $nominatim_data[0]['lon'];
+			$location['lat'] = $data[0]['lat'];
+			$location['lon'] = $data[0]['lon'];
+			$location['source'] = $precision;
+		}
+	}
+	return $location;
+}
+
+function pz_locate_photon($search, $location, $precision) {
+	$endpoint = 'https://photon.komoot.de/api/?limit=1';
+	$url = parametre_url($endpoint, 'q', $search, '&');
+	$res = recuperer_url_cache($url);
+	if ($res['status'] == 200 and $res['length']) {
+		$data = json_decode($res['page'], true);
+		if ($data['features'][0]['geometry']['coordinates'][0]) {
+			$location['country'] = $data['features'][0]['properties']['country'];
+			$location['city'] = $data['features'][0]['properties']['city'];
+			$location['lat'] = $data['features'][0]['geometry']['coordinates'][1];
+			$location['lon'] = $data['features'][0]['geometry']['coordinates'][0];
 			$location['source'] = $precision;
 		}
 	}
