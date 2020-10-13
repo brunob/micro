@@ -101,8 +101,6 @@ function pz_locate_zitem($id_zitem) {
  *       5 : wikidata head quarter short
  *       6 : nominatim institute short
  *       7 : nominatim address
- *     array doi données renvoyées par l'API DOI
- *     array scopus données renvoyées par l'API scopus 
  **/
 function pz_locate_affiliation($affiliation) {
 	$location = array();
@@ -143,7 +141,22 @@ function pz_locate_affiliation($affiliation) {
 	}
 }
 
-function pz_locate_wikidata($search, $location, $precision) {
+
+/**
+ * Localise un élément en utilisant l'API wikidata
+ *
+ * @param string $search
+ * @param array $location
+ * @param int $precision
+ * @param integer $id_zitem
+ * @return array
+ *     float lat : latitude
+ *     float lon : longitude
+ *     string country : pays
+ *     string city : ville
+ *     int source : source de données du résultat
+ */
+function pz_locate_wikidata($search, $location, $precision, $id_zitem = 0) {
 	$endpoint = 'https://query.wikidata.org/sparql?format=json';
 	$query = '
 	SELECT ?item ?itemLabel ?country ?countryLabel ?mainTown ?mainTownLabel ?mainLon ?mainLat ?hqTownLabel ?hqLon ?hqLat
@@ -178,6 +191,7 @@ function pz_locate_wikidata($search, $location, $precision) {
 	$url = parametre_url($endpoint, 'query', $query, '&');
 	$res = recuperer_url_cache($url);
 	if ($res['status'] == 200 and $res['length']) {
+		spip_log('récupération des données wikidata pour le zitem '. $id_zitem, 'pz');
 		$data = json_decode($res['page'], true);
 		if (isset($data['results']['bindings'][0]['countryLabel']['value'])) {
 			$location['country'] = $data['results']['bindings'][0]['countryLabel']['value'];
@@ -193,33 +207,67 @@ function pz_locate_wikidata($search, $location, $precision) {
 			$location['lon'] = $data['results']['bindings'][0]['hqLon']['value'];
 			$location['source'] = $precision + 1;
 		}
+	} else {
+		spip_log('erreur lors de la récupération des données wikidata pour le zitem '. $id_zitem, 'pz');
 	}
 	return $location;
 }
 
-function pz_locate_osm($search, $location, $precision) {
+/**
+ * Localise un élément en utilisant l'API nominatim
+ *
+ * @param string $search
+ * @param array $location
+ * @param int $precision
+ * @param integer $id_zitem
+ * @return array
+ *     float lat : latitude
+ *     float lon : longitude
+ *     string country : pays
+ *     string city : ville
+ *     int source : source de données du résultat
+ */
+function pz_locate_osm($search, $location, $precision, $id_zitem = 0) {
 	$endpoint = 'https://nominatim.openstreetmap.org/search/?format=json&addressdetails=1&limit=1&q=';
 	$query = $search;
 	$url = $endpoint . $query;
 	$res = recuperer_url_cache($url);
 	if ($res['status'] == 200 and $res['length']) {
+		spip_log('récupération des données nominatim pour le zitem '. $id_zitem . '  précision ' . $precision, 'pz');
 		$data = json_decode($res['page'], true);
 		if ($data[0]['lat']) {
-			$location['country'] = $candidates['country'];
-			$location['city'] = $candidates['city'];
+			$location['country'] = $data[0]['address']['country'];
+			$location['city'] = $data[0]['address']['city'];
 			$location['lat'] = $data[0]['lat'];
 			$location['lon'] = $data[0]['lon'];
 			$location['source'] = $precision;
 		}
+	} else {
+		spip_log('erreur lors de la récupération des données nominatim pour le zitem '. $id_zitem . '  précision ' . $precision, 'pz');
 	}
 	return $location;
 }
 
-function pz_locate_photon($search, $location, $precision) {
+/**
+ * Localise un élément en utilisant l'API photon
+ *
+ * @param string $search
+ * @param array $location
+ * @param int $precision
+ * @param integer $id_zitem
+ * @return array
+ *     float lat : latitude
+ *     float lon : longitude
+ *     string country : pays
+ *     string city : ville
+ *     int source : source de données du résultat
+ */
+function pz_locate_photon($search, $location, $precision, $id_zitem = 0) {
 	$endpoint = 'https://photon.komoot.de/api/?limit=1';
 	$url = parametre_url($endpoint, 'q', $search, '&');
 	$res = recuperer_url_cache($url);
 	if ($res['status'] == 200 and $res['length']) {
+		spip_log('récupération des données photon pour le zitem '. $id_zitem . '  précision ' . $precision, 'pz');
 		$data = json_decode($res['page'], true);
 		if ($data['features'][0]['geometry']['coordinates'][0]) {
 			$location['country'] = $data['features'][0]['properties']['country'];
@@ -228,6 +276,8 @@ function pz_locate_photon($search, $location, $precision) {
 			$location['lon'] = $data['features'][0]['geometry']['coordinates'][0];
 			$location['source'] = $precision;
 		}
+	} else {
+		spip_log('erreur lors de la récupération des données photon pour le zitem '. $id_zitem . '  précision ' . $precision, 'pz');
 	}
 	return $location;
 }
