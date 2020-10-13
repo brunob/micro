@@ -11,7 +11,8 @@ if (!defined('_ECRIRE_INC_VERSION')) {
  * @return array
  */
 function pz_taches_generales_cron($taches_generales) {
-	$taches_generales['pz'] = 60*60;
+	$taches_generales['pz_doi'] = 60*60;
+	$taches_generales['pz_sc'] = 60*60;
 	return $taches_generales;
 }
 
