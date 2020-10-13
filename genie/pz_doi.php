@@ -99,7 +99,10 @@ function pz_get_metadata($id_zitem) {
  **/
 function pz_locate_doi($id_zitem) {
 	include_spip('pz_fonctions');
+
 	$zitem = sql_fetsel('institute, city, country, lat, lon', 'spip_zitems', 'id_zitem='.sql_quote($id_zitem));
+	$location = array();
+	
 	// localiser la structure (université, etc) en utilisant plusieurs APIs dans l'ordre wikidata, nominatim (OSM) (geonames en plus ?)
 	// process wikidata pompé sur PUMA https://github.com/OllyButters/puma/blob/master/source/add/geocode.py#L79
 	$location = pz_locate_wikidata($zitem['institute'], $location, 1);

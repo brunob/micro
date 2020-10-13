@@ -32,20 +32,25 @@ function genie_pz_sc_dist($t) {
  * @return bool true si localisé, false sinon
  **/
 function pz_locate_sc($id_zitem) {
-	$zitem = sql_fetsel('affiliation, lat, lon', 'spip_zitems', 'id_zitem='.sql_quote($id_zitem));
+	include_spip('pz_fonctions');
+
+	$zitem = sql_fetsel('extras, lat, lon', 'spip_zitems', 'id_zitem='.sql_quote($id_zitem));
+	$location = array();
+	$affiliation = $zitem['extras'];
+	
 	// localiser la structure (université, etc) en utilisant plusieurs APIs dans l'ordre wikidata, nominatim & photon (OSM)
 	// process wikidata pompé sur PUMA https://github.com/OllyButters/puma/blob/master/source/add/geocode.py#L79
-	$location = pz_locate_wikidata($zitem['affiliation'], $location, 1);
+	$location = pz_locate_wikidata($affiliation, $location, 1);
 
 	if (!isset($location['lat']) or $location['source'] == 2) {
-		$location = pz_locate_osm($zitem['affiliation'], $location, 3);
+		$location = pz_locate_osm($affiliation, $location, 3);
 		if (!isset($location['lat'])) {
-			$location = pz_locate_photon($zitem['affiliation'], $location, 3);
+			$location = pz_locate_photon($affiliation, $location, 3);
 		}
 	}
 
 	if (!isset($location['lat'])) {
-		$name = rtrim(preg_replace('/ \(.*\)/', '', $zitem['affiliation']));
+		$name = rtrim(preg_replace('/ \(.*\)/', '', $affiliation));
 		$location = pz_locate_wikidata($name, $location, 4);
 
 		if (!isset($location['lat']) or $location['source'] == 5) {
@@ -56,7 +61,7 @@ function pz_locate_sc($id_zitem) {
 		}
 
 		if (!isset($location['lat'])) {
-			preg_match('/\((.*)\)/', $zitem['affiliation'], $regs);
+			preg_match('/\((.*)\)/', $affiliation, $regs);
 			$location = pz_locate_osm($regs[1], $location, 7);
 			if (!isset($location['lat'])) {
 				$location = pz_locate_photon($regs[1], $location, 6);
