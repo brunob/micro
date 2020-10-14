@@ -36,8 +36,14 @@ function pz_locate_sc($id_zitem) {
 
 	$zitem = sql_fetsel('extras, lat, lon', 'spip_zitems', 'id_zitem='.sql_quote($id_zitem));
 	$location = array();
-	$affiliation = $zitem['extras'];
-	
+
+	// récupérer l'affiliation depuis les extras, sinon ne rien faire
+	if (preg_match('/^tex.affiliation: (.*)\n/m', $extra, $matches)) {
+		$affiliation = $matches[1];
+	} else {
+		return false;
+	}
+
 	// localiser la structure (université, etc) en utilisant plusieurs APIs dans l'ordre wikidata, nominatim & photon (OSM)
 	// process wikidata pompé sur PUMA https://github.com/OllyButters/puma/blob/master/source/add/geocode.py#L79
 	$location = pz_locate_wikidata($affiliation, $location, 1);
@@ -77,6 +83,7 @@ function pz_locate_sc($id_zitem) {
 				'lon' => $location['lon'],
 				'city'          => $location['city'],
 				'country'       => $location['country'],
+				'institute'     => $affiliation,
 				'augmented'     => 'oui'
 			),
 			'id_zitem='. sql_quote($id_zitem)
