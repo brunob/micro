@@ -1,6 +1,6 @@
 <div class="container">
 	<p class="colophon">
-	<BOUCLE_annee(ARTICLES){par date}{0,1}>[(#DATE|annee|!={#VAL{Y}|date}|oui)[(#DATE|annee)]]</BOUCLE_annee>-</B_annee>[(#DATE|annee)] &mdash; #NOM_SITE_SPIP<br />
+	2016-[(#DATE|annee)] &mdash; #NOM_SITE_SPIP, cc-by-nc-sa<br />
 	<a rel="contents" href="#URL_PAGE{plan}"><:plan_site:></a><?php
 	if (isset($GLOBALS['visiteur_session']['id_auteur']) AND $GLOBALS['visiteur_session']['id_auteur']) {
 	?><span class="sep"> | </span><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a><?php
