@@ -130,10 +130,10 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 
 .rubrique_actus #container { max-width: none; }
 
-.page_publications #content,
-.page_publications .footer { margin: 0; }
-.page_publications .page #container { max-width: none; position: relative;  width: 100% !important; padding: 0 !important; }
-.page_publications .carte_gis { position: absolute; height: auto !important; top:0; bottom: 0; }
+.page_map #content,
+.page_map .footer { margin: 0; }
+.page_map .page #container { max-width: none; position: relative;  width: 100% !important; padding: 0 !important; }
+.page_map .carte_gis { position: absolute; height: auto !important; top:0; bottom: 0; }
 
 .page_login .content { max-width: 360px; margin: 0 auto; padding: 1em 0; text-align: center; }
 .page_login #breadcrumb,

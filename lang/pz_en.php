@@ -14,6 +14,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	'titre_csv2bib' => 'csv2bib',
 	'titre_programme' => 'Programme',
-	'titre_publications' => 'Publications',
+	'titre_publications' => 'Map',
 
 );
