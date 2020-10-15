@@ -26,7 +26,7 @@ function formulaires_csv2bib_traiter_dist() {
 			foreach ($csv as $item) {
 				$bib .= "@conference{RefName,\n";
 				foreach ($item as $key => $val) {
-					if (in_array($key, array('chapter', 'abstract', 'title', 'keywords', 'speaker', 'author', 'affiliation', 'url', 'inproceedings', 'conference', 'series', 'booktitle', 'publisher', 'editor', 'address', 'month', 'year', 'pages', 'isbn', 'copyright'))) {
+					if (in_array($key, array('chapter', 'abstract', 'title', 'keywords', 'speaker', 'author', 'affiliation', 'url', 'inproceedings', 'conference', 'series', 'booktitle', 'publisher', 'editor', 'address', 'month', 'year', 'pages', 'isbn', 'copyright', 'presentationType'))) {
 						$bib .= "\t${key} = { ${val} },\n";
 					}
 				}
