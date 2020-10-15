@@ -233,7 +233,7 @@ function pz_locate_osm($search, $location, $precision, $id_zitem = 0) {
 	$url = $endpoint . $query;
 	$res = recuperer_url_cache($url);
 	if ($res['status'] == 200 and $res['length']) {
-		spip_log('récupération des données nominatim pour le zitem '. $id_zitem . '  précision ' . $precision, 'pz');
+		spip_log('récupération des données nominatim pour le zitem '. $id_zitem . ' précision ' . $precision, 'pz');
 		$data = json_decode($res['page'], true);
 		if ($data[0]['lat']) {
 			$location['country'] = $data[0]['address']['country'];
@@ -243,7 +243,7 @@ function pz_locate_osm($search, $location, $precision, $id_zitem = 0) {
 			$location['source'] = $precision;
 		}
 	} else {
-		spip_log('erreur lors de la récupération des données nominatim pour le zitem '. $id_zitem . '  précision ' . $precision, 'pz');
+		spip_log('erreur lors de la récupération des données nominatim pour le zitem '. $id_zitem . ' précision ' . $precision, 'pz');
 	}
 	return $location;
 }
@@ -267,7 +267,7 @@ function pz_locate_photon($search, $location, $precision, $id_zitem = 0) {
 	$url = parametre_url($endpoint, 'q', $search, '&');
 	$res = recuperer_url_cache($url);
 	if ($res['status'] == 200 and $res['length']) {
-		spip_log('récupération des données photon pour le zitem '. $id_zitem . '  précision ' . $precision, 'pz');
+		spip_log('récupération des données photon pour le zitem '. $id_zitem . ' précision ' . $precision, 'pz');
 		$data = json_decode($res['page'], true);
 		if ($data['features'][0]['geometry']['coordinates'][0]) {
 			$location['country'] = $data['features'][0]['properties']['country'];
@@ -277,7 +277,7 @@ function pz_locate_photon($search, $location, $precision, $id_zitem = 0) {
 			$location['source'] = $precision;
 		}
 	} else {
-		spip_log('erreur lors de la récupération des données photon pour le zitem '. $id_zitem . '  précision ' . $precision, 'pz');
+		spip_log('erreur lors de la récupération des données photon pour le zitem '. $id_zitem . ' précision ' . $precision, 'pz');
 	}
 	return $location;
 }
