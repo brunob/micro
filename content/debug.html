@@ -28,17 +28,17 @@
 #SET{error,0}
 <B_items>
 <table class="spip">
-	<BOUCLE_items(ZITEMS){id_zcollection==#ENV{collection,.*}}{location_source=0}>
+	<thead>
+		<tr>
+			<th colspan="3">[Non localisées (#GET{error}) / ][Total (#TOTAL_BOUCLE)]</th>
+		</tr>
+	</thead>
+	<BOUCLE_items(ZITEMS){id_zcollection==#ENV{collection,.*}}{par location_source}>
 		<tr>
 			<td><a href="https://www.zotero.org/zeroplastic/items/#ID_ZITEM" target="_blank">#ID_ZITEM</a></td>
 			<td>#EXTRAS</td>
 			<td>#LOCATION_SOURCE[(#LOCATION_SOURCE|=={0}|oui)[(#SET{error,#GET{error}|plus{1}})]]</td>
 		</tr>
 	</BOUCLE_items>
-	<tfoot>
-		<tr>
-			<td colspan="3">[Non localisées (#GET{error}) / ][Total (#TOTAL_BOUCLE)]</td>
-		</tr>
-	</tfoot>
 </table>
 </B_items>
