@@ -228,9 +228,8 @@ function pz_locate_wikidata($search, $location, $precision, $id_zitem = 0) {
  *     int source : source de données du résultat
  */
 function pz_locate_osm($search, $location, $precision, $id_zitem = 0) {
-	$endpoint = 'https://nominatim.openstreetmap.org/search/?format=json&addressdetails=1&limit=1&q=';
-	$query = $search;
-	$url = $endpoint . $query;
+	$endpoint = 'https://nominatim.openstreetmap.org/search/?format=json&addressdetails=1&limit=1';
+	$url = parametre_url($endpoint, 'q', $search, '&');
 	$res = recuperer_url_cache($url);
 	if ($res['status'] == 200 and $res['length']) {
 		spip_log('récupération des données nominatim pour le zitem '. $id_zitem . ' précision ' . $precision, 'pz');
