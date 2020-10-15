@@ -13,9 +13,9 @@ include_spip('inc/distant');
 function genie_pz_doi_dist($t) {
 	// nombre de zitems traite par iteration
 	$nb_items = _PZ_GENIE_NB_ITEMS;
-	if ($items_list = sql_select('*', 'spip_zitems', "doi != '' and augmented = 'non' and id_parent = '0'", '', 'date_ajout', '0,'.intval($nb_items+1))) {
+	if ($items_list = sql_select('*', 'spip_zitems', "doi != '' and augmented = 'non' and id_parent = '0'", '', 'date_ajout DESC', '0,'.intval($nb_items+1))) {
 		while ($nb_items-- and $zitem = sql_fetch($items_list)) {
-			spip_log('traitement cron du zitem '. $zitem['id_zitem'], 'pz');
+			spip_log('traitement cron doi du zitem '. $zitem['id_zitem'], 'pz');
 			if (pz_get_metadata($zitem['id_zitem'])) {
 				pz_locate_doi($zitem['id_zitem']);
 			}
