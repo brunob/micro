@@ -46,31 +46,31 @@ function pz_locate_sc($id_zitem) {
 
 	// localiser la structure (université, etc) en utilisant plusieurs APIs dans l'ordre wikidata, nominatim & photon (OSM)
 	// process wikidata pompé sur PUMA https://github.com/OllyButters/puma/blob/master/source/add/geocode.py#L79
-	$location = pz_locate_wikidata($affiliation, $location, 1);
+	$location = pz_locate_wikidata($affiliation, $location, 1, $id_zitem);
 
 	if (!isset($location['lat']) or $location['source'] == 2) {
-		$location = pz_locate_osm($affiliation, $location, 3);
+		$location = pz_locate_osm($affiliation, $location, 3, $id_zitem);
 		if (!isset($location['lat'])) {
-			$location = pz_locate_photon($affiliation, $location, 3);
+			$location = pz_locate_photon($affiliation, $location, 3, $id_zitem);
 		}
 	}
 
 	if (!isset($location['lat'])) {
 		$name = rtrim(preg_replace('/ \(.*\)/', '', $affiliation));
-		$location = pz_locate_wikidata($name, $location, 4);
+		$location = pz_locate_wikidata($name, $location, 4, $id_zitem);
 
 		if (!isset($location['lat']) or $location['source'] == 5) {
-			$location = pz_locate_osm($name, $location, 6);
+			$location = pz_locate_osm($name, $location, 6, $id_zitem);
 			if (!isset($location['lat'])) {
-				$location = pz_locate_photon($name, $location, 6);
+				$location = pz_locate_photon($name, $location, 6, $id_zitem);
 			}
 		}
 
 		if (!isset($location['lat'])) {
 			preg_match('/\((.*)\)/', $affiliation, $regs);
-			$location = pz_locate_osm($regs[1], $location, 7);
+			$location = pz_locate_osm($regs[1], $location, 7, $id_zitem);
 			if (!isset($location['lat'])) {
-				$location = pz_locate_photon($regs[1], $location, 6);
+				$location = pz_locate_photon($regs[1], $location, 6, $id_zitem);
 			}
 		}
 	}

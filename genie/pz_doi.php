@@ -105,7 +105,7 @@ function pz_locate_doi($id_zitem) {
 	
 	// localiser la structure (université, etc) en utilisant plusieurs APIs dans l'ordre wikidata, nominatim (OSM) (geonames en plus ?)
 	// process wikidata pompé sur PUMA https://github.com/OllyButters/puma/blob/master/source/add/geocode.py#L79
-	$location = pz_locate_wikidata($zitem['institute'], $location, 1);
+	$location = pz_locate_wikidata($zitem['institute'], $location, 1, $id_zitem);
 
 	if (!isset($location['lat']) or $location['source'] == 2) {
 		$nominatim_query = $zitem['institute'];
@@ -116,12 +116,12 @@ function pz_locate_doi($id_zitem) {
 			$nominatim_query .= ', ' . $zitem['country'];
 		}
 
-		$location = pz_locate_osm($nominatim_query, $location, 3);
+		$location = pz_locate_osm($nominatim_query, $location, 3, $id_zitem);
 		
 		if (!isset($location['lat']) and isset($zitem['city']) and isset($zitem['country'])) {
 			// plan B, si l'adresse n'est pas trouvé, chercher simplement sur la ville
 			$nominatim_query = $zitem['city'] . ', ' . $zitem['country'];
-			$location = pz_locate_osm($nominatim_query, $location, 4);
+			$location = pz_locate_osm($nominatim_query, $location, 4, $id_zitem);
 		}
 	}
 
