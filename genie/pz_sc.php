@@ -13,9 +13,9 @@ include_spip('inc/distant');
 function genie_pz_sc_dist($t) {
 	// nombre de zitems traite par iteration
 	$nb_items = _PZ_GENIE_NB_ITEMS;
-	if ($items_list = sql_select('*', 'spip_zitems', "doi = '' and augmented = 'non' and id_parent = '0'", '', 'date_ajout', '0,'.intval($nb_items+1))) {
+	if ($items_list = sql_select('*', 'spip_zitems', "doi = '' and extras like '%tex.affiliation%' and augmented = 'non' and id_parent = '0'", '', 'date_ajout DESC', '0,'.intval($nb_items+1))) {
 		while ($nb_items-- and $zitem = sql_fetch($items_list)) {
-			spip_log('traitement cron du zitem '. $zitem['id_zitem'], 'pz');
+			spip_log('traitement cron sc du zitem '. $zitem['id_zitem'], 'pz');
 			pz_locate_sc($zitem['id_zitem']);
 		}
 		if ($row = sql_fetch($items_list)) {
@@ -37,7 +37,7 @@ function pz_locate_sc($id_zitem) {
 	$zitem = sql_fetsel('extras, lat, lon', 'spip_zitems', 'id_zitem='.sql_quote($id_zitem));
 	$location = array();
 
-	// récupérer l'affiliation depuis les extras, sinon ne rien faire
+	// récupérer l'affiliation depuis les extras, sinon ne rien faire (ça ne devrait pas arriver cf la requêtes sql dans genie_pz_sc_dist)
 	if (preg_match('/^tex.affiliation: (.*)\n/m', $zitem['extras'], $matches)) {
 		$affiliation = $matches[1];
 	} else {
