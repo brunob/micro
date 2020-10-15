@@ -55,7 +55,7 @@ function pz_locate_zitem($id_zitem) {
 
 	// localiser la structure (université, etc) en utilisant plusieurs APIs dans l'ordre wikidata, nominatim (OSM) (geonames en plus ?)
 	// process wikidata pompé sur PUMA https://github.com/OllyButters/puma/blob/master/source/add/geocode.py#L79
-	$location = pz_locate_wikidata($affiliation, $location, 1);
+	$location = pz_locate_wikidata($candidates['name'], $location, 1);
 
 	if (!isset($location['lat']) or $location['source'] == '2') {
 		$nominatim_query = $candidates['name'];
