@@ -38,7 +38,7 @@ function pz_locate_sc($id_zitem) {
 	$location = array();
 
 	// récupérer l'affiliation depuis les extras, sinon ne rien faire
-	if (preg_match('/^tex.affiliation: (.*)\n/m', $extra, $matches)) {
+	if (preg_match('/^tex.affiliation: (.*)\n/m', $zitem['extras'], $matches)) {
 		$affiliation = $matches[1];
 	} else {
 		return false;
