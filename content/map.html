@@ -26,6 +26,7 @@
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			$('#map1').on('load', function(){
+				this.map.setMaxBounds([[-90, -180], [90, 180]]);
 				this.map.options.clusterOptions.iconCreateFunction = function(cluster) {
 					var childCount = cluster.getChildCount();
 					var c = ' marker-cluster-';
@@ -48,6 +49,13 @@
 			$('#map1').on('ready', function(){
 				var map = this.map,
 					points = map.markerCluster.getLayers();
+				// passer le fond de carte en mode nowrap
+				map.eachLayer(function (layer) {
+					if (layer._url) {
+						layer.options.noWrap = true;
+						layer.options.bounds = L.latLngBounds([[-90, -180], [90, 180]]);
+					}
+				});
 				// popup to modal
 				map.markerCluster.on('click', function (e) {
 					$.modalbox('#URL_PAGE{publication}' + '?id=' + e.layer.id + '&var_zajax=content',{
