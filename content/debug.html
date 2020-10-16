@@ -1,4 +1,10 @@
-<INCLURE{fond=modeles/carte_gis,objets=zitems,
+[(#AUTORISER{configurer}|sinon_interdire_acces)]
+
+[(#ENV{zitem}|oui)
+#FORMULAIRE_LOCATE_ZITEM{#ENV{zitem},#URL_PAGE{debug}|parametre_url{collection,#ENV{collection}}]
+
+<BOUCLE_tetst(CONDITION){si #ENV{zitem}|non}>
+<INCLURE{fond=modeles/carte_gis,objets=zitems_debug,
 	collection,
 	autocenterandzoom=oui,
 	cluster=oui,
@@ -23,14 +29,6 @@
 				return new L.DivIcon({ html: '<div><span>' + ((childCount == 1) ? '' : childCount) + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
 			}
 		});
-		$('#map1').on('ready', function(){
-			// popup to modal
-			this.map.markerCluster.on('click', function (e) {
-				$.modalbox('#URL_PAGE{publication}' + '?id=' + e.layer.id + '&var_zajax=content',{
-					width: '680px'
-				});
-			});
-		});
 	/*]]>*/
 </script>
 #SET{error,0}
@@ -43,10 +41,11 @@
 	</thead>
 	<BOUCLE_items(ZITEMS){id_zcollection==#ENV{collection,.*}}{par location_source}>
 		<tr>
-			<td><a href="https://www.zotero.org/zeroplastic/items/#ID_ZITEM" target="_blank">#ID_ZITEM</a></td>
+			<td><a href="[(#URL_PAGE{publication}|parametre_url{id,#ID_ZITEM})]" target="_blank">#ID_ZITEM</a></td>
 			<td>[(#EXTRAS|pz_extract_affliation)]</td>
 			<td>#LOCATION_SOURCE[(#LOCATION_SOURCE|=={0}|oui)[(#SET{error,#GET{error}|plus{1}})]]</td>
 		</tr>
 	</BOUCLE_items>
 </table>
 </B_items>
+</BOUCLE_tetst>

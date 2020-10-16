@@ -6,6 +6,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	'bouton_convert' => 'Convert',
 
+	'edit_location' => 'Edit location',
+
 	'label_csv' => 'Source CSV',
 	'label_bib' => 'Export BIB',
 	'lien_map' => 'View Map',

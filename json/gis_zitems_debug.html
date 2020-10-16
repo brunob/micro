@@ -1,10 +1,10 @@
-<BOUCLE_items(ZITEMS){id_zcollection=RBR9DL97}{id_parent=0}{","}>[(#ID_ZITEM|pz_locate_zitem|oui)
+<BOUCLE_items(ZITEMS){id_zcollection==#ENV{collection,.*}}{id_parent=0}{","}>[(#LAT|oui)
     {"type": "Feature",
-    "geometry": {"type": "Point", "coordinates": \[[(#ID_ZITEM|pz_locate_zitem|table_valeur{lon})], [(#ID_ZITEM|pz_locate_zitem|table_valeur{lat})]\]},
+    "geometry": {"type": "Point", "coordinates": \[#LON, #LAT\]},
     "id":"[(#ID_ZITEM)]",
     "properties": {
-        "title":[(#ID_ZITEM*|extraire_multi|supprimer_numero|json_encode)],
-        "description":[(#TITRE|json_encode)][
+        "title":[(#TITRE*|extraire_multi|supprimer_numero|json_encode)],
+        "description":[(#INCLURE{fond=inclure/infowindow_edit,id_zitem,id_zcollection}|json_encode)][
         (#LOGO_GIS|gis_icon_properties)]
     }}
 ]</BOUCLE_items>

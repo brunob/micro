@@ -1,0 +1,36 @@
+<div class="formulaire_spip formulaire_editer formulaire_locate_zitem">
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+[(#ENV{editable}|oui)
+<form method="post" action="#ENV{action}" name="formulaire_locate_zitem" id="formulaire_locate_zitem"><div>
+	#ACTION_FORMULAIRE{#ENV{action}}
+	<input type="hidden" name="id_zitem" value="#ENV{id_zitem}" />
+	<div class="editer-groupe">
+		<div class="fieldset">
+		<fieldset><div class="editer-groupe">
+			[(#SAISIE{carte,editer_gis,env})]
+		</div></fieldset>
+		</div>
+		<div class="fieldset">
+		<fieldset><div class="editer-groupe">
+			<p class="explication">[(#ENV{extras}|pz_extract_affliation)]</p>
+			[(#SAISIE{input,lat,
+				label=<:gis:lat:>,
+				defaut=#ENV{lat,#CONFIG{gis/lat,0}},
+				obligatoire=oui})]
+			[(#SAISIE{input,lon,
+				label=<:gis:lon:>,
+				defaut=#ENV{lon,#CONFIG{gis/lon,0}},
+				obligatoire=oui})]
+			[(#SAISIE{hidden,zoom,
+				label=<:gis:zoom:>,
+				size=2,
+				maxlength=2})]
+		</div></fieldset>
+		</div>
+	</div>
+	<p class="boutons">
+		<input class="submit" type="submit" name="enregistrer" value="<:bouton_enregistrer:>" />
+	</p>
+</div></form>]
+</div>
