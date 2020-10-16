@@ -101,6 +101,7 @@ function pz_locate_zitem($id_zitem) {
  *       5 : wikidata head quarter short
  *       6 : nominatim institute short
  *       7 : nominatim address
+ *       8 : manual
  **/
 function pz_locate_affiliation($affiliation) {
 	$location = array();
