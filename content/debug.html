@@ -23,6 +23,14 @@
 				return new L.DivIcon({ html: '<div><span>' + ((childCount == 1) ? '' : childCount) + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
 			}
 		});
+		$('#map1').on('ready', function(){
+			// popup to modal
+			this.map.markerCluster.on('click', function (e) {
+				$.modalbox('#URL_PAGE{publication}' + '?id=' + e.layer.id + '&var_zajax=content',{
+					width: '680px'
+				});
+			});
+		});
 	/*]]>*/
 </script>
 #SET{error,0}
