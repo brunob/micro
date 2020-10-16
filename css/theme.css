@@ -146,3 +146,5 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .page_login .formulaire_login #pass_securise { display: none !important; }
 .page_login .formulaire_login *,
 .page_login .formulaire_login label { text-align: center; }
+
+.page_debug #container { max-width: 970px; }

@@ -34,15 +34,22 @@
 #SET{error,0}
 <B_items>
 <table class="spip">
+	<caption>[Non localisées (#GET{error}) / ][Total (#TOTAL_BOUCLE)]</caption>
 	<thead>
 		<tr>
-			<th colspan="3">[Non localisées (#GET{error}) / ][Total (#TOTAL_BOUCLE)]</th>
+			<th>Publication</th>
+			<th>Affiliation</th>
+			<th>City</th>
+			<th>Country</th>
+			<th>Code</th>
 		</tr>
 	</thead>
 	<BOUCLE_items(ZITEMS){id_zcollection==#ENV{collection,.*}}{par location_source}>
 		<tr>
 			<td><a href="[(#URL_PAGE{publication}|parametre_url{id,#ID_ZITEM})]" target="_blank">#ID_ZITEM</a></td>
 			<td>[(#EXTRAS|pz_extract_affliation)]</td>
+			<td>#CITY</td>
+			<td>#COUNTRY</td>
 			<td>#LOCATION_SOURCE[(#LOCATION_SOURCE|=={0}|oui)[(#SET{error,#GET{error}|plus{1}})]]</td>
 		</tr>
 	</BOUCLE_items>
