@@ -36,6 +36,7 @@ function formulaires_locate_zitem_traiter_dist($id_zitem, $retour = '') {
 		),
 		'id_zitem='. sql_quote($id_zitem)
 	);
+	suivre_invalideur(1);
 	if ($retour) {
 		$res['redirect'] = $retour;
 	}
