@@ -4,6 +4,7 @@
 	</header>
 
 	<div class="main">
+		<!--
 		<B_collections>
 		<div id="map_filter" class="leaflet-control">
 			<select id="map_filter_select">
@@ -14,6 +15,7 @@
 			</select>
 		</div>
 		</B_collections>
+		-->
 
 		<INCLURE{fond=modeles/carte_gis,objets=zitems,
 			collection,
@@ -62,6 +64,7 @@
 						width: '680px'
 					});
 				});
+				/*
 				// filtrer la carte en fonction de la collection demdandée
 				L.DomUtil.get('map_filter_select').onchange = function(){
 					var filter = this.value,
@@ -79,6 +82,7 @@
 						map.markerCluster.addLayers(points);
 					}
 				};
+				*/
 			});
 		/*]]>*/
 		</script>
