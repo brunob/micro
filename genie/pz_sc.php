@@ -70,7 +70,7 @@ function pz_locate_sc($id_zitem) {
 			preg_match('/\((.*)\)/', $affiliation, $regs);
 			$location = pz_locate_osm($regs[1], $location, 7, $id_zitem);
 			if (!isset($location['lat'])) {
-				$location = pz_locate_photon($regs[1], $location, 6, $id_zitem);
+				$location = pz_locate_photon($regs[1], $location, 7, $id_zitem);
 			}
 		}
 	}
