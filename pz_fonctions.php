@@ -280,3 +280,19 @@ function pz_locate_photon($search, $location, $precision, $id_zitem = 0) {
 	}
 	return $location;
 }
+
+/**
+ * Extrait la valeur de l'affiliation depuis le champ extras d'un zitem
+ *
+ * @param string $text
+ * @return string|bool
+ *   le texte de l'affiliation
+ *   false si pas d'affiliation
+ */
+function pz_extract_affliation($text) {
+	if (preg_match('/^tex.affiliation: (.*)\n/m', $text, $matches)) {
+		return $matches[1];
+	} else {
+		return false;
+	}
+}
