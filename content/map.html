@@ -46,7 +46,7 @@
 				}
 			});
 			$('#map1').on('ready', function(){
-				var map = this.map
+				var map = this.map,
 					points = map.markerCluster.getLayers();
 				// popup to modal
 				map.markerCluster.on('click', function (e) {
