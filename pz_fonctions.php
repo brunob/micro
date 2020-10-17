@@ -297,3 +297,19 @@ function pz_extract_affliation($text) {
 		return false;
 	}
 }
+
+/**
+ * Surligne des mots dans un texte
+ *
+ * @param string $text
+ * @param string $search
+ * @return string|bool
+ *   le texte de l'affiliation
+ *   false si pas d'affiliation
+ */
+function pz_surligner($text, $search) {
+	if (strlen($search)) {
+		$text = preg_replace('@('.$search.')@u', '<span class="spip_surligne">${1}</span>', $text);
+	}
+	return $text;
+}
