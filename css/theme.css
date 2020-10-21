@@ -86,7 +86,6 @@ div.socialtags img { height: 24px; }
 .long.logos .spip_logo { float: none; margin: 0 0 0.5em; }
 .long.logos .publication { margin-bottom: 0.25em; }
 .articles.logos a:hover .spip_logo { filter: grayscale(1); transition: all 0.8s ease; }
-.articles.logos a:hover .spip_logo { filter: grayscale(1); transition: all 0.8s ease; }
 
 .extra .menu .h2,
 .extra .liste .h2 { margin-bottom: 1em; }
