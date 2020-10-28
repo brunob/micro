@@ -263,7 +263,7 @@ function pz_locate_osm($search, $location, $precision, $id_zitem = 0) {
  *     int source : source de données du résultat
  */
 function pz_locate_photon($search, $location, $precision, $id_zitem = 0) {
-	$endpoint = 'https://photon.komoot.de/api/?limit=1';
+	$endpoint = 'https://photon.komoot.io/api/?limit=1';
 	$url = parametre_url($endpoint, 'q', $search, '&');
 	$res = recuperer_url_cache($url);
 	if ($res['status'] == 200 and $res['length']) {
