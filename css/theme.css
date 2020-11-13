@@ -21,7 +21,7 @@ table.spip tr.row_even td,table.spip tr.row_even th { background: transparent; }
 body { background: #fff; font-size: 120%; }
 .page { display: flex; min-height: 100vh; flex-direction: column; }
 .page .container { flex: 1; }
-#container { max-width: 680px; font-size: 1.125em; }
+#container { max-width: 960px; font-size: 1.125em; }
 #container.fullwidth { max-width: none; width: 100%; }
 
 .header { margin: 0; padding : 1.5em 0; position: relative; background: #c9002f; box-shadow: 0 6px 6px -6px rgba(0,0,0,0.2); border-bottom: 1px solid #dedcd2; }
