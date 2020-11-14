@@ -13,7 +13,7 @@
 		</div>
 		<div class="fieldset">
 		<fieldset><div class="editer-groupe">
-			<p class="explication">[(#ENV{extras}|pz_extract_affliation)]</p>
+			<p class="explication">[(#ENV{extras}|pz_extra{tex.affiliation})]</p>
 			[(#SAISIE{input,lat,
 				label=<:gis:lat:>,
 				defaut=#ENV{lat,#CONFIG{gis/lat,0}},
