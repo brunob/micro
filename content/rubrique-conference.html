@@ -1,17 +1,17 @@
 <BOUCLE_content(RUBRIQUES){id_rubrique}>
 <section>
-	<header class="cartouche">
+	<header class="cartouche offscreen">
 		<h1 class="#EDIT{titre}">#TITRE</h1>
 		[<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]"><:dernier_ajout:> : (#DATE|affdate_jourcourt).</time></p>]
 	</header>
 
 	<div class="main">
-		[<div class="#EDIT{texte} chapo">(#TEXTE|adaptive_images)</div>]
+		[<div class="#EDIT{texte} chapo offscreen">(#TEXTE|adaptive_images)</div>]
 		[(#LOGO_RUBRIQUE|image_reduire{960}|inserer_attribut{class,logo})]
 		<B_articles>
 		<div class="liste articles">
 			<h2 class="divider"><:pz:titre_programme:></h2>
-			<ul class="liste-items">
+			<ul class="liste-items grid-3 has-gutter-l">
 				<BOUCLE_articles(ARTICLES){id_rubrique}{par sinum titre, num titre, titre}>
 				<li class="item">
 					<article class="entry article hentry">

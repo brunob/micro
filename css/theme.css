@@ -128,7 +128,7 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .page_sommaire .footer { margin-top: 0; }
 
 .rubrique_conference .main .logo { margin-bottom: 3em; }
-.rubrique_conference .liste.articles .item { padding: 0; }
+.rubrique_conference .liste.articles .item { padding: 0; text-align: center; }
 
 .rubrique_actus #container { max-width: none; }
 
