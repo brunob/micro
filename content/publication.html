@@ -2,7 +2,7 @@
 <article itemscope itemtype="http://schema.org/Article">
 	<header class="cartouche">
 		<h1><span itemprop="name">#TITRE</span></h1>
-		<p class="publication"><time pubdate="pubdate" itemprop="datePublished">#ANNEE</time><B_auteurs><span class="authors"><span class="sep">, </span><BOUCLE_auteurs(ZCREATORS){id_zitem=#ID_ZITEM}{role=author}{par rang}{', '}>[(#AUTEUR|replace{',',''})]</BOUCLE_auteurs></span></B_auteurs></p>
+		<p class="publication"><time pubdate="pubdate" itemprop="datePublished">#ANNEE</time><B_auteurs><span class="authors"><span class="sep">, </span><BOUCLE_auteurs(ZCREATORS){id_zitem=#ID_ZITEM}{role=author}{par rang}{', '}>[(#AUTEUR|replace{',',''})]</BOUCLE_auteurs></span>.</B_auteurs></p>
 	</header>
 
 	<div class="main" itemprop="articleBody">
