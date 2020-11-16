@@ -38,6 +38,7 @@
 	<thead>
 		<tr>
 			<th>Publication</th>
+			<th>PaperID</th>
 			<th>Affiliation</th>
 			<th>City</th>
 			<th>Country</th>
@@ -48,6 +49,7 @@
 		<tr>
 			<td><a href="[(#URL_PAGE{publication}|parametre_url{id,#ID_ZITEM})]" target="_blank">#ID_ZITEM</a></td>
 			<td>[(#EXTRAS|pz_extra{tex.affiliation}|pz_surligner{#COUNTRY}|pz_surligner{#CITY})]</td>
+			<td>[(#EXTRAS|pz_extra{Section}|pz_surligner{#COUNTRY}|pz_surligner{#CITY})]</td>
 			<td>#CITY</td>
 			<td>#COUNTRY</td>
 			<td><a href="[(#URL_PAGE{debug}|parametre_url{zitem,#ID_ZITEM}|parametre_url{collection,#ID_ZCOLLECTION})]">#LOCATION_SOURCE 🖉</a>[(#LOCATION_SOURCE|=={0}|oui)[(#SET{error,#GET{error}|plus{1}})]]</td>
