@@ -121,6 +121,8 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .programme table.spip tbody tr:hover td { background: transparent; }
 .programme table.spip td { vertical-align: middle; border: 1px solid; }
 
+.posters .item { margin-top: 1rem; margin-bottom: 1rem; }
+
 .page_sommaire .theme + .theme { margin-top: 3em; }
 .page_sommaire .poster { margin-bottom: 1.5em; }
 .page_sommaire .live .gaia { margin: 2em auto 2em; }

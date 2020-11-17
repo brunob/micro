@@ -1,0 +1,12 @@
+<B_docs>
+<ul class="posters list-none text-center grid-3 has-gutter-l">
+	<BOUCLE_docs(DOCUMENTS){id_document IN #VAL{/\W/}|preg_split{#ENV*{id}}}>[
+	(#SET{titre_doc, #TITRE|sinon{#FICHIER|basename}|concat{' - ',#TYPE_DOCUMENT,' - ',#VAL{#TAILLE|taille_en_octets}}})]
+	<li class="item">
+		<a href="#FICHIER" type="#MIME_TYPE" title="[(#GET{titre_doc}|attribut_html)]">
+			[(#LOGO_DOCUMENT{#FICHIER}|inserer_attribut{class,vignette})]
+		</a>
+	</li>
+	</BOUCLE_docs>
+</ul>
+</B_docs>
