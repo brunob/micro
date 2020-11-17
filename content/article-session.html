@@ -1,8 +1,7 @@
 <BOUCLE_content(ARTICLES){id_article}>
 <article itemscope itemtype="http://schema.org/Article">
 	<header class="cartouche">
-		<h1><span class="#EDIT{titre}" itemprop="name">#TITRE</span></h1>[(#COMPOSITION|=={conference}|non)
-		<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|nom_jour) ][(#DATE|affdate)]</time></p>]
+		<h1><span class="#EDIT{titre}" itemprop="name">#TITRE</span></h1>
 		<div class="postmeta">
 			#MODELE{article_traductions}
 			<B_tags>
