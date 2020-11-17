@@ -1,6 +1,8 @@
+<BOUCLE_conf(RUBRIQUES){id_parent=#CONFIG{pz/rub_confs,1}}{par sinum titre, num titre, titre}{0,1}>
 <B_days>#ANCRE_PAGINATION
-<BOUCLE_days(ARTICLES){page in programme_1, programme_2, programme_3, programme_4, programme_5, programme_6}{pagination 1}>
+<BOUCLE_days(RUBRIQUES){id_parent}{pagination 1}>
 #TEXTE
 </BOUCLE_days>
 [<div class="pagination">(#PAGINATION{precedent_suivant})</div>]
 </B_days>
+</BOUCLE_conf>

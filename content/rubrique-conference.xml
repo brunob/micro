@@ -2,5 +2,6 @@
 	<nom>Rubrique conference</nom>
 	<description>Composition adaptée pour la rubrique d'une conférence.</description>
 	<icon>images/objet-liste-contenus.png</icon>
-	<branche type="article" composition="conference" />
+	<branche type="rubrique" composition="day" />
+	<branche type="article" composition="session" />
 </composition>

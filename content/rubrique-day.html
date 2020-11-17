@@ -5,17 +5,8 @@
 	</header>
 
 	<div class="main">
-		[<div class="#EDIT{texte} chapo offscreen">(#TEXTE|adaptive_images)</div>]
 		[(#LOGO_RUBRIQUE|image_reduire{960}|inserer_attribut{class,logo})]
-		<B_rubs>
-		<div class="liste articles">
-			<h2 class="divider"><:pz:titre_programme:></h2>
-			<BOUCLE_rubs(RUBRIQUES){id_parent}{par sinum titre, num titre, titre}>
-			[<div class="programme">(#TEXTE|adaptive_images)</div>]
-			</BOUCLE_rubs>
-			</ul>
-		</div>
-		</B_rubs>
+		[<div class="#EDIT{texte} programme">(#TEXTE|adaptive_images)</div>]
 	</div>
 
 	[<aside>

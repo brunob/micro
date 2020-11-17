@@ -14,6 +14,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	'label_collections_toutes' => 'All collections',
 
+	'meme_jour' => 'Also today',
+
 	'titre_csv2bib' => 'csv2bib',
 	'titre_programme' => 'Programme',
 	'titre_publications' => 'Map',
