@@ -2,7 +2,7 @@
 	<header class="cartouche">
 		<h1><:pz:programme:></h1>
 	</header>
-    [(#SESSION{statut}|=={0minizero}|sinon_interdire_acces)]
+    [(#SESSION{statut}|=={0minirezo}|sinon_interdire_acces)]
 	<div class="main">
         <BOUCLE_conf(RUBRIQUES){id_parent=#CONFIG{pz/rub_confs,1}}{par sinum titre, num titre, titre}{0,1}>
         <BOUCLE_days(RUBRIQUES){id_parent}>
