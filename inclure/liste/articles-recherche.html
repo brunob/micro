@@ -1,0 +1,17 @@
+[(#REM) Articles trouves ]
+#SET{articles,#ARRAY}
+<BOUCLE_base(ARTICLES){recherche}{!par points}{doublons}>#SET_PUSH{articles,#ID_ARTICLE}</BOUCLE_base>
+<BOUCLE_zitems(ZITEMS){json LIKE %#ENV{recherche}%}>#SET{zitems,#GET{zitems}|concat{' '}|concat{#ID_ZITEM}}</BOUCLE_zitems>
+<BOUCLE_more(ARTICLES){recherche #GET{zitems}}{!par points}{doublons}>#SET_PUSH{articles,#ID_ARTICLE}</BOUCLE_more>
+<B_articles>
+<div class="liste resultats articles">
+	#ANCRE_PAGINATION
+	<h2 class="h2">[(#ENV{titre}|sinon{<:articles:>}) ](#GRAND_TOTAL)</h2>
+	<ul class="liste-items">
+		<BOUCLE_articles(ARTICLES){id_article IN #GET{articles}}{pagination #ENV{pagination,20}}>
+		<li class="item"><a href="#URL_ARTICLE">#TITRE</a></li>
+		</BOUCLE_articles>
+	</ul>
+	[<div class="pagination">(#PAGINATION)</div>]
+</div>
+</B_articles>
