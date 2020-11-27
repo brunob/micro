@@ -8,13 +8,18 @@
 		<section class="theme">
 			[(#LOGO_ARTICLE|image_reduire{1170,0}|inserer_attribut{class,poster})]
 			[<div class="welcome">(#TEXTE)</div>]
+			<BOUCLE_fin(ARTICLES){page=conclusion}>
+				<h2 class="divider">#TITRE</h2>
+				[<div class="welcome">(#TEXTE)</div>]
+			</BOUCLE_fin>
 			<h2 class="divider">#TITRE</h2>
 			<div class="programme">
-				<INCLURE{fond=inclure/days,env,ajax}>
+				<INCLURE{fond=inclure/days,debut_days=0,senv,ajax}>
 			</div>
 		</section>
 		</BOUCLE_prog>
 
+		[(#REM)
 		<section class="theme live">
 		<h2 class="divider">Live</h2>
 			<div class="grid-3 has-gutter-xl">
@@ -43,7 +48,7 @@
 					<h3 class="text-center">Room: Gaia</h3>
 				</div>
 			</div>
-		</section>
+		</section>]
 
 		[(#REM)<section class="theme">
 			<h2 class="divider">Archives</h2>
