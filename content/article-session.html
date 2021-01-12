@@ -2,22 +2,6 @@
 <article itemscope itemtype="http://schema.org/Article">
 	<header class="cartouche">
 		<h1><span class="#EDIT{titre}" itemprop="name">#TITRE</span></h1>
-		<div class="postmeta">
-			#MODELE{article_traductions}
-			<B_tags>
-			<span class="tags">
-				<span class="sep">|</span>
-				<span class="label"><:mots_clefs:> :</span>
-				<ul class="inline list-inline">
-					#SET{tags,#ARRAY}
-					<BOUCLE_tags(MOTS){id_article}>
-					#SET{tags,#GET{tags}|push{#TITRE}}
-					<li><a href="#URL_MOT">#TITRE</a></li>
-					</BOUCLE_tags>
-					[<meta itemprop="keywords" content="(#GET{tags}|join{', '})" />]
-				</ul>
-			</span>
-			</B_tags>
 	</header>
 
 	<div class="main" itemprop="articleBody">

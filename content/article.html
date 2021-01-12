@@ -2,28 +2,12 @@
 <article itemscope itemtype="http://schema.org/Article">
 	<header class="cartouche">
 		<h1><span class="#EDIT{titre}" itemprop="name">#TITRE</span></h1>
-		<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|nom_jour) ][(#DATE|affdate)]</time></p>
-		<div class="postmeta">
-			#MODELE{article_traductions}
-			<B_tags>
-			<span class="tags">
-				<span class="sep">|</span>
-				<span class="label"><:mots_clefs:> :</span>
-				<ul class="inline list-inline">
-					#SET{tags,#ARRAY}
-					<BOUCLE_tags(MOTS){id_article}>
-					#SET{tags,#GET{tags}|push{#TITRE}}
-					<li><a href="#URL_MOT">#TITRE</a></li>
-					</BOUCLE_tags>
-					[<meta itemprop="keywords" content="(#GET{tags}|join{', '})" />]
-				</ul>
-			</span>
-			</B_tags>
+		[(#PAGE|non)<p class="publication"><time pubdate="pubdate" datetime="[(#DATE|date_iso)]" itemprop="datePublished">[(#DATE|nom_jour) ][(#DATE|affdate)]</time></p>]
 	</header>
 
 	<div class="main" itemprop="articleBody">
 		[(#LOGO_ARTICLE|image_reduire{960,460}|image_recadre{960,0}|inserer_attribut{itemprop,image}|inserer_attribut{class,logo_full})]
-		[<div class="#EDIT{chapo} chapo surlignable">(#CHAPO|adaptive_images)</div>]
+		[<div class="#EDIT{chapo} texte surlignable">(#CHAPO|adaptive_images)</div>]
 		[<div class="#EDIT{texte} texte surlignable">(#TEXTE|sinon{no content}adaptive_images)</div>]
 	</div>
 
