@@ -83,7 +83,7 @@ div.socialtags img { height: 24px; }
 
 /* Listes d'articles et extraits introductifs */
 .articles.logos h3 { margin-bottom: 0.5em; }
-.long.logos .spip_logo { float: none; margin: 0 0 0.5em; }
+.long.logos .spip_logo { display: block; float: none; margin: 0 auto 0.5em; }
 .long.logos .publication { margin-bottom: 0.25em; }
 .articles.logos a:hover .spip_logo { filter: grayscale(1); transition: all 0.8s ease; }
 
@@ -127,12 +127,14 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .page_sommaire .poster { margin-bottom: 1.5em; }
 .page_sommaire .welcome { margin-bottom: 3em; }
 .page_sommaire .live .gaia { margin: 2em auto 2em; }
+.page_sommaire .editions { margin-bottom: 3em; }
 .page_sommaire .map_home { position: relative; }
 .page_sommaire .map_home .overlay { position: absolute; top: 0; left: 0; z-index: 1000; display: flex; justify-content: center; align-items: center; height: 100%; width: 100%; background: rgba(255,255,255,0.5); }
 .page_sommaire .map_home .overlay .hyperlien { background: #fff; }
 .page_sommaire .footer { margin-top: 0; }
 
-.rubrique_conference .main .logo,
+.rubrique_conference .main .logo { display: block; margin: 0 auto 2em; }
+.rubrique_conference .main .texte { margin-bottom: 2em; }
 .rubrique_day .main .logo { margin-bottom: 3em; }
 
 .rubrique_actus #container { max-width: none; }

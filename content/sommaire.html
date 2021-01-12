@@ -4,6 +4,14 @@
 	</header>
 
 	<div class="main container">
+		<BOUCLE_pres(ARTICLES){page=presentation}>
+		<section class="theme">
+			[(#LOGO_ARTICLE|image_reduire{1170,0}|inserer_attribut{class,poster})]
+			[<div class="welcome">(#CHAPO)</div>]
+			<p class="text-center"><a href="#URL_ARTICLE">Read more</a></p>
+		</section>
+		</BOUCLE_pres>
+
 		<BOUCLE_prog(ARTICLES){page=programme}>
 		<section class="theme">
 			[(#LOGO_ARTICLE|image_reduire{1170,0}|inserer_attribut{class,poster})]
@@ -50,12 +58,26 @@
 			</div>
 		</section>]
 
-		[(#REM)<section class="theme">
-			<h2 class="divider">Archives</h2>
-			<div class="text-center">
-				<p>Les éditions précédentes, leur programme, les publications liées, les archives vidéos, etc.</p>
+		<B_confs>
+		<section class="theme editions">
+			<h2 class="divider">#INFO_TITRE{rubrique,#CONFIG{pz/rub_confs,1}}</h2>
+			<div class="liste long articles logos">
+				<ul class="liste-items grid-2-small-1 has-gutter-xl">
+				<BOUCLE_confs(RUBRIQUES){tout}{id_parent=#CONFIG{pz/rub_confs,1}}{par num titre}{n-2,2}>
+					<li class="item text-center">
+						<h3 class="h3">
+							<a href="#URL_RUBRIQUE">
+								[(#LOGO_RUBRIQUE|image_recadre{1.86:1,+,center}|image_reduire{723}|inserer_attribut{class,spip_logo})]
+								#TITRE
+							</a>
+						</h3>
+					</li>
+				</BOUCLE_confs>
+				</ul>
 			</div>
-		</section>]
+			<p class="text-center"><a href="#URL_RUBRIQUE{#CONFIG{pz/rub_confs,1}}">View all editions</a></p>
+		</section>
+		</B_confs>
 
 		<B_actus>
 		<section class="theme">
