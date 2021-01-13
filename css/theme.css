@@ -133,6 +133,7 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .page_sommaire .map_home .overlay .hyperlien { background: #fff; }
 .page_sommaire .footer { margin-top: 0; }
 
+.rubrique_conferences .liste.rubriques .item { margin-bottom: 2em; }
 .rubrique_conference .main .logo { display: block; margin: 0 auto 2em; }
 .rubrique_conference .main .texte { margin-bottom: 2em; }
 .rubrique_day .main .logo { margin-bottom: 3em; }

@@ -27,4 +27,5 @@
 	<pipeline nom="declarer_champs_extras" inclure="base/pz.php" />
 	<pipeline nom="taches_generales_cron" inclure="pz_pipelines.php" />
 	<pipeline nom="gis_modele_parametres_autorises" inclure="pz_pipelines.php" />
+	<pipeline nom="pre_boucle" inclure="pz_pipelines.php" />
 </paquet>

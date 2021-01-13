@@ -28,3 +28,17 @@ function pz_gis_modele_parametres_autorises($flux){
 	$flux[] = 'collection';
 	return $flux;
 }
+
+/**
+ * Insertion dans le pipeline pre_boucle (SPIP)
+ * 
+ * Forcer le critère {tout} sur les boucles rubriques
+ * 
+ * @param Boucle $boucle Description de la boucle
+ * @return Boucle $boucle Description de la boucle
+ */
+function pz_pre_boucle($boucle){
+	if ($boucle->type_requete == 'rubriques' AND !isset($boucle->modificateur['criteres']['statut']))
+		$boucle->modificateur['criteres']['statut'] = true;
+	return $boucle;
+}
