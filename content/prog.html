@@ -4,8 +4,8 @@
 	</header>
     [(#SESSION{statut}|=={0minirezo}|sinon_interdire_acces)]
 	<div class="main">
-        <BOUCLE_conf(RUBRIQUES){id_parent=#CONFIG{pz/rub_confs,1}}{par sinum titre, num titre, titre}{0,1}>
-        <BOUCLE_days(RUBRIQUES){id_parent}>
+        <BOUCLE_conf(RUBRIQUES){id_rubrique=4}>
+        <BOUCLE_days(RUBRIQUES){id_parent}{par sinum titre, num titre, titre}>
         <div class="text-center">#TEXTE</div>
         <BOUCLE_sessions(ARTICLES){id_rubrique}{par sinum titre, num titre, titre}>
         #TEXTE

@@ -57,27 +57,6 @@
 			</div>
 		</section>]
 
-		<B_confs>
-		<section class="theme editions">
-			<h2 class="divider">#INFO_TITRE{rubrique,#CONFIG{pz/rub_confs,1}}</h2>
-			<div class="liste long articles logos">
-				<ul class="liste-items grid-2-small-1 has-gutter-xl">
-				<BOUCLE_confs(RUBRIQUES){id_parent=#CONFIG{pz/rub_confs,1}}{par num titre}{n-2,2}>
-					<li class="item text-center">
-						<h3 class="h3">
-							<a href="#URL_RUBRIQUE">
-								[(#LOGO_RUBRIQUE|image_recadre{1.86:1,+,center}|image_reduire{723}|inserer_attribut{class,spip_logo})]
-								<span class="offscreen">#TITRE</span>
-							</a>
-						</h3>
-					</li>
-				</BOUCLE_confs>
-				</ul>
-			</div>
-			<p class="text-center"><a href="#URL_RUBRIQUE{#CONFIG{pz/rub_confs,1}}">View all editions</a></p>
-		</section>
-		</B_confs>
-
 		<B_actus>
 		<section class="theme">
 			<h2 class="divider">#INFO_TITRE{rubrique,#CONFIG{pz/rub_actus,2}}</h2>
