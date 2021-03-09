@@ -79,39 +79,6 @@
 		</B_actus>
 	</div>
 
-	<div class="map_home">
-		<div class="overlay">
-			<div class="hyperlien"><a href="#URL_PAGE{map}"><:pz:lien_map:></a></div>
-		</div>
-		<INCLURE{fond=modeles/carte_gis,objets=zitems,
-			autocenterandzoom=oui,
-			zoom=2,
-			height=500px,
-			no_control=oui,
-			zoom_wheel=non,
-			cluster=oui,
-			clusterSpiderfyOnMaxZoom=oui,
-			singleMarkerMode=oui} />
-		<script type="text/javascript">
-			/*<![CDATA[*/
-				$('#map1').on('load', function(){
-					this.map.options.clusterOptions.iconCreateFunction = function(cluster) {
-						var childCount = cluster.getChildCount();
-						var c = ' marker-cluster-';
-						if (childCount == 1) {
-							c += 'dot';
-						} else if (childCount < 10) {
-							c += 'small';
-						} else if (childCount < 50) {
-							c += 'medium';
-						} else {
-							c += 'large';
-						}
-						return new L.DivIcon({ html: '<div><span>' + ((childCount == 1) ? '' : childCount) + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
-					}
-				});
-			/*]]>*/
-		</script>
-	</div>
+	<INCLURE{fond=inclure/map_overlay}>
 
 </section>
