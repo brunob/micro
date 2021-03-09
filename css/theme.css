@@ -117,9 +117,9 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .hyperlien a { display: inline-block; padding: 0.5em 1em; border: 1px solid rgba(0,0,0,0.85); color: initial; font-weight: bold; transition: all ease 0.3s; }
 .hyperlien a:hover { background: #c9002f; border-color: rgba(0,0,0,0.1); color: #fff; text-decoration: none; }
 
-.map_overlay { position: relative; }
+.map_overlay { position: relative; margin-bottom: -1.7em; }
 .map_overlay .overlay { position: absolute; top: 0; left: 0; z-index: 1000; display: flex; justify-content: center; align-items: center; height: 100%; width: 100%; background: rgba(255,255,255,0.5); }
-.map_overlay .overlay .hyperlien { background: #fff; }
+.map_overlay .overlay .hyperlien { background: #fff; font-size: 1.35rem; }
 
 .programme table.spip { text-align: center; }
 .programme table.spip tbody tr:hover td { background: transparent; }
@@ -132,7 +132,6 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 .page_sommaire .welcome { margin-bottom: 3em; }
 .page_sommaire .live .gaia { margin: 2em auto 2em; }
 .page_sommaire .editions { margin-bottom: 3em; }
-.page_sommaire .footer { margin-top: 0; }
 
 .rubrique_conferences .liste.rubriques .item { margin-bottom: 2em; }
 .rubrique_conference .main .logo { display: block; margin: 0 auto 2em; }

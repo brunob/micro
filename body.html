@@ -17,6 +17,7 @@
 				<INCLURE{fond=extra/#ENV{type-page},env} />
 			</aside>]
 		</div>
+		[(#ENV{composition}|=={conference}|oui)<INCLURE{fond=inclure/map_overlay}>]
 		<footer class="footer" id="footer" role="contentinfo">
 			<INCLURE{fond=footer/#ENV{type-page},env} />
 		</footer>
