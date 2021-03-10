@@ -33,6 +33,9 @@
 					var c = ' marker-cluster-';
 					if (childCount == 1) {
 						c += 'dot';
+						if (cluster.getAllChildMarkers()[0].feature.properties.collection === 'XI85GUTQ') {
+							c += ' base'
+						}
 					} else if (childCount < 10) {
 						c += 'small';
 					} else if (childCount < 50) {
