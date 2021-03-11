@@ -112,6 +112,9 @@ h2.divider::after { content: ""; display: block; margin: 1em auto 0; width: 40%;
 #cboxClose { top: 8px; right: 10px; }
 
 .leaflet-container { background: #d4dadc; }
+.leaflet-control.legend { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; }
+.leaflet-control.legend .marker-cluster { display: inline-block; vertical-align: bottom; }
+.leaflet-control.legend .marker-cluster div { margin: 0; }
 
 .hyperlien { text-align: center; }
 .hyperlien a { display: inline-block; padding: 0.5em 1em; border: 1px solid rgba(0,0,0,0.85); color: initial; font-weight: bold; transition: all ease 0.3s; }

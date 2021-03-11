@@ -7,6 +7,11 @@ if (!defined('_PZ_GENIE_NB_ITEMS')) {
 	define('_PZ_GENIE_NB_ITEMS', 50);
 }
 
+## ID de la collection plastic_pollution_papers
+if (!defined('_PZ_ID_PPP')) {
+	define('_PZ_ID_PPP', 'XI85GUTQ');
+}
+
 define('_DELAI_RECUPERER_URL_CACHE', 3600 * 30);
 
 $GLOBALS['z_blocs'] = array(

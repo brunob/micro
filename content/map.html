@@ -33,7 +33,7 @@
 					var c = ' marker-cluster-';
 					if (childCount == 1) {
 						c += 'dot';
-						if (cluster.getAllChildMarkers()[0].feature.properties.collection === 'XI85GUTQ') {
+						if (cluster.getAllChildMarkers()[0].feature.properties.collection === '#CONST{_PZ_ID_PPP}') {
 							c += ' base'
 						}
 					} else if (childCount < 10) {
@@ -66,6 +66,14 @@
 						width: '680px'
 					});
 				});
+				// ajouter la legende
+				var legend = L.control({position: 'bottomleft'});
+				legend.onAdd = function (map) {
+					var div = L.DomUtil.create('div', 'legend');
+					div.innerHTML = ['(#INCLURE{fond=inclure/map_legend}|texte_script)'];
+					return div;
+				};
+				legend.addTo(map);
 				/*
 				// filtrer la carte en fonction de la collection demdandée
 				L.DomUtil.get('map_filter_select').onchange = function(){
