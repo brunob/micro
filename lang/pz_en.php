@@ -13,7 +13,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien_map' => 'View Map',
 
 	'label_collections_toutes' => 'All collections',
-	'label_collections_micro' => 'Micro Papers',
+	'label_collections_micro' => 'MICRO Papers',
 	'label_collections_ppp' => 'Bibliographic Background',
 
 	'meme_jour' => 'Also today',
