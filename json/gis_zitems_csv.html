@@ -1,6 +1,6 @@
-<BOUCLE_items(DATA){source csv, #CHEMIN{master.csv}}{1,n}{","}>[(#VALEUR{affiliation}|pz_locate_affiliation|oui)
+<BOUCLE_items(DATA){source csv, #CHEMIN{master.csv}}{1,n}{","}>[(#VALEUR{affiliation}|pz_locate_affiliation|sinon{#VALEUR{lon}}|oui)
     {"type": "Feature",
-    "geometry": {"type": "Point", "coordinates": \[[(#VALEUR{affiliation}|pz_locate_affiliation|table_valeur{lon})], [(#VALEUR{affiliation}|pz_locate_affiliation|table_valeur{lat})]\]},
+    "geometry": {"type": "Point", "coordinates": \[[(#VALEUR{affiliation}|pz_locate_affiliation|table_valeur{lon}|sinon{#VALEUR{lon}})], [(#VALEUR{affiliation}|pz_locate_affiliation|table_valeur{lat}|sinon{#VALEUR{lat}})]\]},
     "id":"[(#VALEUR{chapter})]",
     "properties": {
         "title":[(#VALEUR{chapter}|json_encode)][

@@ -4,6 +4,7 @@
 	clusterSpiderfyOnMaxZoom=oui,
 	singleMarkerMode=oui,
 	fullscreen=oui}>
+<script type="text/javascript" src="https://unpkg.com/@kngai/leaflet.timezones@1.0.0/L.timezones.js"></script>
 <script type="text/javascript">
 	/*<![CDATA[*/
 		$('#map1').on('load', function(){
@@ -21,6 +22,12 @@
 				}
 				return new L.DivIcon({ html: '<div><span>' + ((childCount == 1) ? '' : childCount) + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
 			}
+			L.timezones.bindPopup(function (layer) {
+				return layer.feature.properties.time_zone;
+			}).setStyle({
+				weight: 1,
+				color: '#666'
+			}).addTo(this.map);
 		});
 	/*]]>*/
 </script>
@@ -38,7 +45,7 @@
 		<tr>
 			<td>#VALEUR{chapter}</td>
 			<td>#VALEUR{affiliation}</td>
-			<td>[(#VALEUR{affiliation}|pz_locate_affiliation|table_valeur{source}|sinon{0 [(#SET{error,#GET{error}|plus{1}})]})]</td>
+			<td>[(#VALEUR{affiliation}|pz_locate_affiliation|table_valeur{source}|sinon{[(#VALEUR{lon}|oui) 8 ]}|sinon{0 [(#SET{error,#GET{error}|plus{1}})]})]</td>
 		</tr>
 	</BOUCLE_items>
 	<tfoot>
