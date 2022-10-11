@@ -12,6 +12,11 @@ if (!defined('_PZ_ID_PPP')) {
 	define('_PZ_ID_PPP', 'XI85GUTQ');
 }
 
+## ID de la collection pour l'édition en cours
+if (!defined('_PZ_ID_CURRENT')) {
+	define('_PZ_ID_CURRENT', 'HT23N3EM');
+}
+
 define('_DELAI_RECUPERER_URL_CACHE', 3600 * 30);
 
 $GLOBALS['z_blocs'] = array(
