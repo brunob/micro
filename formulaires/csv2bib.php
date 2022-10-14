@@ -26,9 +26,11 @@ function formulaires_csv2bib_traiter_dist() {
 			foreach ($csv as $item) {
 				$bib .= "@conference{RefName,\n";
 				foreach ($item as $key => $val) {
-					if (in_array($key, array('chapter', 'abstract', 'title', 'keywords', 'speaker', 'author', 'affiliation', 'url', 'inproceedings', 'conference', 'series', 'booktitle', 'publisher', 'editor', 'address', 'month', 'year', 'pages', 'isbn', 'copyright', 'presentationType'))) {
-						// escape { " $ ref http://www.bibtex.org/SpecialSymbols/
-						$bib .= "\t${key} = { " . addcslashes($val, '{"$') . " },\n";
+					if (in_array($key, array('chapter', 'abstract', 'title', 'keywords', 'speaker', 'author', 'affiliation', 'url', 'inproceedings', 'conference', 'series', 'booktitle', 'publisher', 'editor', 'address', 'month', 'year', 'pages', 'isbn', 'copyright', 'presentationType', 'lat', 'lon'))) {
+						if (strlen($val) > 0) {
+							// escape { " $ ref http://www.bibtex.org/SpecialSymbols/
+							$bib .= "\t${key} = { " . addcslashes($val, '{"$') . " },\n";
+						}
 					}
 				}
 				$bib .= "}\n";
