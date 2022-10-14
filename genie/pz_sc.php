@@ -44,6 +44,23 @@ function pz_locate_sc($id_zitem) {
 		return false;
 	}
 
+	// si on a déjà lat/lon dans les extras, mettre à jour l'item directement
+	if (preg_match('/^tex.lat: (.*)\n/m', $zitem['extras'], $lat) and preg_match('/^tex.lon: (.*)\n/m', $zitem['extras'], $lon)) {
+		sql_updateq('spip_zitems',
+			array(
+				'location_source' => 8,
+				'lat' => $lat[1],
+				'lon' => $lon[1],
+				'city'          => '',
+				'country'       => '',
+				'institute'     => $affiliation,
+				'augmented'     => 'oui'
+			),
+			'id_zitem='. sql_quote($id_zitem)
+		);
+		return true;
+	}
+
 	// localiser la structure (université, etc) en utilisant plusieurs APIs dans l'ordre wikidata, nominatim & photon (OSM)
 	// process wikidata pompé sur PUMA https://github.com/OllyButters/puma/blob/master/source/add/geocode.py#L79
 	$location = pz_locate_wikidata($affiliation, $location, 1, $id_zitem);
