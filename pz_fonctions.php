@@ -323,7 +323,7 @@ function pz_surligner($text, $search) {
  *   le texte de l'affiliation
  *   false si pas d'affiliation
  */
-function genie_maj_zotspip_dist($t) {
+function genie_maj_zotspip($t) {
 	include_spip('inc/zotspip');
 	return zotspip_maj(false, _PZ_ID_CURRENT);
 }
