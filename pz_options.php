@@ -28,3 +28,16 @@ $GLOBALS['z_blocs'] = array(
 	'footer',
 	'breadcrumb',
 );
+
+/**
+ * Surcharge de zotspip pour le forcer à travailler sur une seule collection
+ *
+ * @param object $t
+ * @return int
+ *   le texte de l'affiliation
+ *   false si pas d'affiliation
+ */
+function genie_maj_zotspip($t) {
+	include_spip('inc/zotspip');
+	return zotspip_maj(false, _PZ_ID_CURRENT);
+}
