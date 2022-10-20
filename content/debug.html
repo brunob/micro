@@ -5,7 +5,7 @@
 
 <BOUCLE_tetst(CONDITION){si #ENV{zitem}|non}>
 <INCLURE{fond=modeles/carte_gis,objets=zitems_debug,
-	collection,
+	collection=#ENV{collection,#CONST{_PZ_ID_CURRENT}},
 	autocenterandzoom=oui,
 	cluster=oui,
 	clusterSpiderfyOnMaxZoom=oui,
@@ -45,10 +45,10 @@
 			<th>Code</th>
 		</tr>
 	</thead>
-	<BOUCLE_items(ZITEMS){id_zcollection==#ENV{collection,.*}}{par location_source}>
+	<BOUCLE_items(ZITEMS){id_zcollection=#ENV{collection,#CONST{_PZ_ID_CURRENT}}}{par location_source}>
 		<tr>
 			<td><a href="[(#URL_PAGE{publication}|parametre_url{id,#ID_ZITEM})]" target="_blank">#ID_ZITEM</a></td>
-			<td>[(#EXTRAS|pz_extra{Section}|pz_surligner{#COUNTRY}|pz_surligner{#CITY})]</td>
+			<td>[(#URL|parse_url|table_valeur{path}|replace{'/document'}|replace{'/'})]</td>
 			<td>[(#EXTRAS|pz_extra{tex.affiliation}|pz_surligner{#COUNTRY}|pz_surligner{#CITY})]</td>
 			<td>#CITY</td>
 			<td>#COUNTRY</td>
