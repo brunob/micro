@@ -49,8 +49,8 @@ function pz_locate_sc($id_zitem) {
 		sql_updateq('spip_zitems',
 			array(
 				'location_source' => 8,
-				'lat' => $lat[1],
-				'lon' => $lon[1],
+				'lat' => str_replace(',', '.', $lat[1]),
+				'lon' => str_replace(',', '.', $lon[1]),
 				'city'          => '',
 				'country'       => '',
 				'institute'     => $affiliation,
