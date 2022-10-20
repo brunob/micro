@@ -1,8 +1,10 @@
+[(#REM)
 <div class="map_overlay">
 	<div class="overlay">
 		<div class="hyperlien"><a href="#URL_PAGE{map}"><:pz:lien_map:></a></div>
 	</div>
 	<INCLURE{fond=modeles/carte_gis,objets=zitems,
+		collection=#CONST{_PZ_ID_CURRENT},
 		autocenterandzoom=oui,
 		zoom=2,
 		height=500px,
@@ -29,4 +31,4 @@
 			}
 		});
 	</script>
-</div>
+</div>]

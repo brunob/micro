@@ -18,7 +18,7 @@
 		-->
 
 		<INCLURE{fond=modeles/carte_gis,objets=zitems,
-			collection,
+			collection=#CONST{_PZ_ID_CURRENT},
 			autocenterandzoom=oui,
 			height=500px,
 			cluster=oui,
@@ -66,6 +66,7 @@
 						width: '680px'
 					});
 				});
+				/*
 				// ajouter la legende
 				var legend = L.control({position: 'bottomleft'});
 				legend.onAdd = function (map) {
@@ -74,6 +75,7 @@
 					return div;
 				};
 				legend.addTo(map);
+				*/
 				/*
 				// filtrer la carte en fonction de la collection demdandée
 				L.DomUtil.get('map_filter_select').onchange = function(){
