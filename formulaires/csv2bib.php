@@ -10,16 +10,26 @@ function formulaires_csv2bib_charger_dist() {
 
 function formulaires_csv2bib_verifier_dist() {
 	$erreurs = array();
-
+	if (isset($_FILES) && isset($_FILES['fichier']) && !$_FILES['fichier']['error']) {
+		$fichier = $_FILES['fichier']['tmp_name'];
+		$importer_csv = charger_fonction("importer_csv", "inc");
+		$csv = $importer_csv($fichier, false, ",", '"', null);
+		if (is_array($csv) and count($csv) >= 1) {
+			foreach ($csv[0] as $key) {
+				if ($key != trim($key)) {
+					$erreurs['message_erreur'] .= "Espace présent dans l’entête de la colonne $key <br/>";
+				}
+			}
+		}
+	}
 	return $erreurs;
 }
 
 function formulaires_csv2bib_traiter_dist() {
 
-	$importer_csv = charger_fonction("importer_csv", "inc");
-
 	if (isset($_FILES) && isset($_FILES['fichier']) && !$_FILES['fichier']['error']) {
 		$fichier = $_FILES['fichier']['tmp_name'];
+		$importer_csv = charger_fonction("importer_csv", "inc");
 		$csv = $importer_csv($fichier, true, ",", '"', null);
 		if (is_array($csv) and count($csv) >= 1) {
 			$bib = '';
