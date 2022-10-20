@@ -31,6 +31,7 @@ function formulaires_locate_zitem_traiter_dist($id_zitem, $retour = '') {
 	sql_updateq('spip_zitems',
 		array(
 			'location_source' => 8,
+			'augmented' => 'oui',
 			'lat' => _request('lat'),
 			'lon' => _request('lon'),
 			'city' => _request('ville'),
