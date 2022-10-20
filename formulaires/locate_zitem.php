@@ -33,6 +33,8 @@ function formulaires_locate_zitem_traiter_dist($id_zitem, $retour = '') {
 			'location_source' => 8,
 			'lat' => _request('lat'),
 			'lon' => _request('lon'),
+			'city' => _request('ville'),
+			'country' => _request('pays'),
 		),
 		'id_zitem='. sql_quote($id_zitem)
 	);
