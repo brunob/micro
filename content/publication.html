@@ -21,7 +21,7 @@
 					#SET{tags,#GET{tags}|push{#TAG}}
 					<li>#TAG</li>
 					</BOUCLE_tags>
-					[<meta itemprop="keywords" content="(#GET{tags}|join{', '})" />]
+					[<meta itemprop="keywords" content="(#VAL{', '}|implode{#GET{tags}})" />]
 				</ul>
 			</span>
 			</B_tags>

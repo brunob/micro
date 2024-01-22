@@ -16,13 +16,13 @@
 		</li>
 		</BOUCLE_articles>
 	</ul>
-	[<div class="pagination">
+	[<nav role="navigation" class="pagination">
 		(#PAGINATION{
 			#ENV{modele_pagination,page_precedent_suivant},
 			label_precedent=#ENV{label_precedent,<:zcore:pagination_prev:>},
 			label_suivant=#ENV{label_suivant,<:zcore:pagination_next:>}
 		})
-	</div>]
+	</nav>]
 </B_articles>
 [(#SET{message_aucun, [(#ENV{message_aucun}|is_null|?{<:info_aucun_article:>, #ENV{message_aucun}})]})]
 [<p class="aucun-resultat">(#GET{message_aucun})</p>]

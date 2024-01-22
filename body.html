@@ -3,9 +3,9 @@
 		<header class="header" id="header" role="banner">
 			<INCLURE{fond=header/#ENV{type-page},env} />
 		</header>
-		[<nav class="nav" id="nav">
-			(#INCLURE{fond=inclure/nav,env})
-		</nav>]
+		<nav class="nav" id="nav">
+			<INCLURE{fond=inclure/nav,env} />
+		</nav>
 		<div class="container[(#SI_PAGE{sommaire}|ou{#SI_PAGE{login}})fullwidth]" id="container">
 			<main class="content" id="content" role="main">
 				[<nav class="breadcrumb" id="breadcrumb" role="navigation">(#SI_PAGE{sommaire}|non)

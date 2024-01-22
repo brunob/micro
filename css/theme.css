@@ -18,7 +18,13 @@ table.spip tr.row_even td,table.spip tr.row_even th { background: transparent; }
 /* ------------------------------------------
 /* Habillage des elements du contenu
 /* ------------------------------------------ */
-body { background: #fff; font-size: 120%; }
+@media (min-width: 768px) {
+	body { font-size: 120%; }
+}
+@media (max-width: 575.98px) {
+	body { font-size: 89%; }
+}
+body { background: #fff; }
 .page { display: flex; min-height: 100vh; flex-direction: column; }
 .page .container { flex: 1; }
 #container { max-width: 960px; font-size: 1.125em; }
